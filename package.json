@@ -1,0 +1,51 @@
+{
+	"name": "@s77rt/react-native-sodium",
+	"version": "0.0.1",
+	"description": "A fast cryptography module for React Native using libsodium.",
+	"react-native": "js/index",
+	"source": "js/index",
+	"main": "js/index",
+	"files": [
+		"libsodium/src/libsodium",
+		"cpp",
+		"js",
+		"android",
+		"ios",
+		"react-native-sodium.podspec",
+		"!android/build",
+		"!ios/build",
+		"!**/__tests__",
+		"!**/__fixtures__",
+		"!**/__mocks__"
+	],
+	"keywords": [
+		"react-native",
+		"cryptography",
+		"crypto",
+		"libsodium",
+		"sodium"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/s77rt/react-native-sodium.git"
+	},
+	"author": "Abdelhafidh Belalia <admin@abdelhafidh.com> (https://github.com/s77rt)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/s77rt/react-native-sodium/issues"
+	},
+	"homepage": "https://github.com/s77rt/react-native-sodium#readme",
+	"devDependencies": {},
+	"peerDependencies": {
+		"react": "*",
+		"react-native": "*"
+	},
+	"codegenConfig": {
+		"name": "RTNSodiumSpec",
+		"type": "modules",
+		"jsSrcsDir": "js",
+		"android": {
+			"javaPackageName": "com.s77rt.rtnsodium"
+		}
+	}
+}
