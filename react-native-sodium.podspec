@@ -15,8 +15,15 @@ Pod::Spec.new do |s|
 
   s.source_files    = ["ios/**/*.{h,m,mm,swift}"]
 
-  s.subspec 'sodiumCpp' do |sp|
-    sp.source_files = ["cpp/**/*.{h,cpp}", "libsodium/src/libsodium/**/*.{h,c}"]
+  s.prepare_command = "cd libsodium && ./dist-build/apple-xcframework.sh"
+
+  s.subspec 'libsodium' do |sp|
+    sp.vendored_frameworks = "libsodium/libsodium-apple/Clibsodium.xcframework"
+  end
+
+  s.subspec 'sodiuma' do |sp|
+    sp.source_files = ["cpp/**/*.{h,cpp}"]
+    sp.dependency 'react-native-sodium/libsodium'
   end
 
   s.pod_target_xcconfig = {
