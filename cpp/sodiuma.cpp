@@ -1,27 +1,36 @@
 #include "sodiuma.h"
+#include "randombytes/randombytes.h"
 
 #include <sodium.h>
 
 namespace s77rt {
 namespace sodiuma {
 
-Sodiuma::~Sodiuma() {}
-
-facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &,
+facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
                                   const facebook::jsi::PropNameID &name) {
-  return facebook::jsi::Value(5);
-}
+  const std::string property_name = name.utf8(runtime);
 
-void Sodiuma::set(facebook::jsi::Runtime &,
-                  const facebook::jsi::PropNameID &name,
-                  const facebook::jsi::Value &value) {
-  return;
+  if (property_name == "randombytes_random") {
+    return facebook::jsi::Function::createFromHostFunction(
+        runtime,
+        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_random"), 0,
+        RandombytesRandom);
+  }
+
+  if (property_name == "randombytes_uniform") {
+    return facebook::jsi::Function::createFromHostFunction(
+        runtime,
+        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_uniform"), 1,
+        RandombytesUniform);
+  }
+
+  return facebook::jsi::Value::undefined();
 }
 
 std::vector<facebook::jsi::PropNameID>
-Sodiuma::getPropertyNames(facebook::jsi::Runtime &rt) {
-  std::vector<facebook::jsi::PropNameID> result;
-  return result;
+Sodiuma::getPropertyNames(facebook::jsi::Runtime &runtime) {
+  return facebook::jsi::PropNameID::names(runtime, "randombytes_random",
+                                          "randombytes_uniform");
 }
 
 void Install(facebook::jsi::Runtime &runtime) {
