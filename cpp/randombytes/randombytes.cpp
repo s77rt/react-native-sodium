@@ -43,10 +43,9 @@ RandombytesBufDeterministic(facebook::jsi::Runtime &runtime,
   const double size = arguments[1].getNumber();
 
   unsigned char seed[randombytes_SEEDBYTES];
-  auto copy_string_to_seed = [&seed](bool, const void *data, size_t num) {
-    memcpy(&seed[0], data, num);
-  };
-  arguments[2].getString(runtime).getStringData(runtime, copy_string_to_seed);
+  memcpy(&seed[0],
+         arguments[2].getObject(runtime).getArrayBuffer(runtime).data(runtime),
+         sizeof(seed));
 
   randombytes_buf_deterministic(buf, size, seed);
 
