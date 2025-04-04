@@ -13,5 +13,9 @@ facebook::jsi::Value RandombytesUniform(facebook::jsi::Runtime &,
                                         const facebook::jsi::Value &,
                                         const facebook::jsi::Value *, size_t);
 
+facebook::jsi::Value RandombytesBuf(facebook::jsi::Runtime &,
+                                    const facebook::jsi::Value &,
+                                    const facebook::jsi::Value *, size_t);
+
 } // namespace sodiuma
 } // namespace s77rt
