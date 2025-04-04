@@ -37,5 +37,25 @@ facebook::jsi::Value RandombytesBuf(facebook::jsi::Runtime &runtime,
   return facebook::jsi::Value::undefined();
 }
 
+facebook::jsi::Value
+RandombytesBufDeterministic(facebook::jsi::Runtime &runtime,
+                            const facebook::jsi::Value &,
+                            const facebook::jsi::Value *arguments, size_t) {
+
+  uint8_t *const buf =
+      arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+  const double size = arguments[1].getNumber();
+
+  unsigned char seed[randombytes_SEEDBYTES] = {0};
+  auto copy_string_to_seed = [&seed](bool, const void *data, size_t num) {
+    memcpy(&seed[0], data, num);
+  };
+  arguments[2].getString(runtime).getStringData(runtime, copy_string_to_seed);
+
+  randombytes_buf_deterministic(buf, size, seed);
+
+  return facebook::jsi::Value::undefined();
+}
+
 } // namespace sodiuma
 } // namespace s77rt
