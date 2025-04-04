@@ -39,6 +39,20 @@ facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
         3, RandombytesBufDeterministic);
   }
 
+  if (property_name == "randombytes_close") {
+    return facebook::jsi::Function::createFromHostFunction(
+        runtime,
+        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_close"), 0,
+        RandombytesClose);
+  }
+
+  if (property_name == "randombytes_stir") {
+    return facebook::jsi::Function::createFromHostFunction(
+        runtime,
+        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_stir"), 0,
+        RandombytesStir);
+  }
+
   return facebook::jsi::Value::undefined();
 }
 
@@ -46,7 +60,7 @@ std::vector<facebook::jsi::PropNameID>
 Sodiuma::getPropertyNames(facebook::jsi::Runtime &runtime) {
   return facebook::jsi::PropNameID::names(
       runtime, "randombytes_random", "randombytes_uniform", "randombytes_buf",
-      "randombytes_buf_deterministic");
+      "randombytes_buf_deterministic", "randombytes_close", "randombytes_stir");
 }
 
 void Install(facebook::jsi::Runtime &runtime) {

@@ -22,5 +22,12 @@ facebook::jsi::Value RandombytesBufDeterministic(facebook::jsi::Runtime &,
                                                  const facebook::jsi::Value *,
                                                  size_t);
 
+facebook::jsi::Value RandombytesClose(facebook::jsi::Runtime &,
+                                      const facebook::jsi::Value &,
+                                      const facebook::jsi::Value *, size_t);
+
+facebook::jsi::Value RandombytesStir(facebook::jsi::Runtime &,
+                                     const facebook::jsi::Value &,
+                                     const facebook::jsi::Value *, size_t);
 } // namespace sodiuma
 } // namespace s77rt

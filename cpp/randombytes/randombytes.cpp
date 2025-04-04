@@ -57,5 +57,21 @@ RandombytesBufDeterministic(facebook::jsi::Runtime &runtime,
   return facebook::jsi::Value::undefined();
 }
 
+facebook::jsi::Value RandombytesClose(facebook::jsi::Runtime &,
+                                      const facebook::jsi::Value &,
+                                      const facebook::jsi::Value *, size_t) {
+
+  return facebook::jsi::Value(randombytes_close());
+}
+
+facebook::jsi::Value RandombytesStir(facebook::jsi::Runtime &,
+                                     const facebook::jsi::Value &,
+                                     const facebook::jsi::Value *, size_t) {
+
+  randombytes_stir();
+
+  return facebook::jsi::Value::undefined();
+}
+
 } // namespace sodiuma
 } // namespace s77rt
