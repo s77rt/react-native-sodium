@@ -27,7 +27,7 @@ Sodiuma::getPropertyNames(facebook::jsi::Runtime &runtime) {
   std::vector<facebook::jsi::PropNameID> property_names;
 
   for (const auto &[key, _] : property_functions_) {
-    property_names.push_back(facebook::jsi::PropNameID::forUtf8(runtime, key));
+    property_names.push_back(facebook::jsi::PropNameID::forAscii(runtime, key));
   }
 
   return property_names;
