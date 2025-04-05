@@ -1,4 +1,5 @@
 #include "sodiuma.h"
+#include "crypto_generichash/crypto_generichash.h"
 #include "randombytes/randombytes.h"
 
 #include <sodium.h>
@@ -53,6 +54,13 @@ facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
         RandombytesStir);
   }
 
+  if (property_name == "crypto_generichash") {
+    return facebook::jsi::Function::createFromHostFunction(
+        runtime,
+        facebook::jsi::PropNameID::forAscii(runtime, "crypto_generichash"), 6,
+        CryptoGenerichash);
+  }
+
   return facebook::jsi::Value::undefined();
 }
 
@@ -60,7 +68,8 @@ std::vector<facebook::jsi::PropNameID>
 Sodiuma::getPropertyNames(facebook::jsi::Runtime &runtime) {
   return facebook::jsi::PropNameID::names(
       runtime, "randombytes_random", "randombytes_uniform", "randombytes_buf",
-      "randombytes_buf_deterministic", "randombytes_close", "randombytes_stir");
+      "randombytes_buf_deterministic", "randombytes_close", "randombytes_stir",
+      "crypto_generichash");
 }
 
 void Install(facebook::jsi::Runtime &runtime) {

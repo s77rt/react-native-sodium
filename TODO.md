@@ -2,3 +2,4 @@
 -   Export constants e.g. randombytes_SEEDBYTES, crypto_generichash_KEYBYTES, etc.
 -   Document that it's the responsibility of the user to respect function params e.g. randombytes_buf_deterministic`s seed param should be 32 bytes
 -   Document all methods
+-   Make Sodiuma::get O(1)
