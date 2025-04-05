@@ -1,5 +1,10 @@
 A fast cryptography module for React Native using libsodium.
 
+## Features
+
+-   JSI
+-   1:1 API compatibility with libsodium
+
 ## Installation
 
 ```bash

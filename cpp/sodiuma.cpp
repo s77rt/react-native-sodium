@@ -1,6 +1,4 @@
 #include "sodiuma.h"
-#include "crypto_generichash/crypto_generichash.h"
-#include "randombytes/randombytes.h"
 
 #include <sodium.h>
 
@@ -11,54 +9,14 @@ facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
                                   const facebook::jsi::PropNameID &name) {
   const std::string property_name = name.utf8(runtime);
 
-  if (property_name == "randombytes_random") {
-    return facebook::jsi::Function::createFromHostFunction(
-        runtime,
-        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_random"), 0,
-        RandombytesRandom);
-  }
+  if (auto property_function = property_functions_.find(property_name);
+      property_function != property_functions_.end()) {
 
-  if (property_name == "randombytes_uniform") {
-    return facebook::jsi::Function::createFromHostFunction(
-        runtime,
-        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_uniform"), 1,
-        RandombytesUniform);
-  }
+    auto [func, func_length] = property_function->second;
 
-  if (property_name == "randombytes_buf") {
     return facebook::jsi::Function::createFromHostFunction(
-        runtime,
-        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_buf"), 2,
-        RandombytesBuf);
-  }
-
-  if (property_name == "randombytes_buf_deterministic") {
-    return facebook::jsi::Function::createFromHostFunction(
-        runtime,
-        facebook::jsi::PropNameID::forAscii(runtime,
-                                            "randombytes_buf_deterministic"),
-        3, RandombytesBufDeterministic);
-  }
-
-  if (property_name == "randombytes_close") {
-    return facebook::jsi::Function::createFromHostFunction(
-        runtime,
-        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_close"), 0,
-        RandombytesClose);
-  }
-
-  if (property_name == "randombytes_stir") {
-    return facebook::jsi::Function::createFromHostFunction(
-        runtime,
-        facebook::jsi::PropNameID::forAscii(runtime, "randombytes_stir"), 0,
-        RandombytesStir);
-  }
-
-  if (property_name == "crypto_generichash") {
-    return facebook::jsi::Function::createFromHostFunction(
-        runtime,
-        facebook::jsi::PropNameID::forAscii(runtime, "crypto_generichash"), 6,
-        CryptoGenerichash);
+        runtime, facebook::jsi::PropNameID::forAscii(runtime, property_name),
+        func_length, func);
   }
 
   return facebook::jsi::Value::undefined();
@@ -66,10 +24,13 @@ facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
 
 std::vector<facebook::jsi::PropNameID>
 Sodiuma::getPropertyNames(facebook::jsi::Runtime &runtime) {
-  return facebook::jsi::PropNameID::names(
-      runtime, "randombytes_random", "randombytes_uniform", "randombytes_buf",
-      "randombytes_buf_deterministic", "randombytes_close", "randombytes_stir",
-      "crypto_generichash");
+  std::vector<facebook::jsi::PropNameID> property_names;
+
+  for (const auto &[key, _] : property_functions_) {
+    property_names.push_back(facebook::jsi::PropNameID::forUtf8(runtime, key));
+  }
+
+  return property_names;
 }
 
 void Install(facebook::jsi::Runtime &runtime) {
