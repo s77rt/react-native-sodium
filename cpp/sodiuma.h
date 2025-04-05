@@ -13,9 +13,9 @@ namespace sodiuma {
 class Sodiuma : public facebook::jsi::HostObject {
 public:
   facebook::jsi::Value get(facebook::jsi::Runtime &,
-                           const facebook::jsi::PropNameID &name);
+                           const facebook::jsi::PropNameID &name) override;
   std::vector<facebook::jsi::PropNameID>
-  getPropertyNames(facebook::jsi::Runtime &rt);
+  getPropertyNames(facebook::jsi::Runtime &rt) override;
 
 private:
   static inline const std::map<
@@ -27,7 +27,10 @@ private:
           {"randombytes_buf_deterministic", {RandombytesBufDeterministic, 3}},
           {"randombytes_close", {RandombytesClose, 0}},
           {"randombytes_stir", {RandombytesStir, 0}},
-          {"crypto_generichash", {CryptoGenerichash, 6}}};
+          {"crypto_generichash", {CryptoGenerichash, 6}},
+          {"crypto_generichash_init", {CryptoGenerichashInit, 4}},
+          {"crypto_generichash_update", {CryptoGenerichashUpdate, 3}},
+          {"crypto_generichash_final", {CryptoGenerichashFinal, 3}}};
 };
 
 // Initialize libsodium and inject sodiuma object into js globals
