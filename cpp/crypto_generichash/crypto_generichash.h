@@ -24,5 +24,10 @@ facebook::jsi::Value CryptoGenerichashFinal(facebook::jsi::Runtime &,
                                             const facebook::jsi::Value *,
                                             size_t);
 
+facebook::jsi::Value CryptoGenerichashKeygen(facebook::jsi::Runtime &,
+                                             const facebook::jsi::Value &,
+                                             const facebook::jsi::Value *,
+                                             size_t);
+
 } // namespace sodiuma
 } // namespace s77rt

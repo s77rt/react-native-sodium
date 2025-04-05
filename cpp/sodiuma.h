@@ -30,7 +30,8 @@ private:
           {"crypto_generichash", {CryptoGenerichash, 6}},
           {"crypto_generichash_init", {CryptoGenerichashInit, 4}},
           {"crypto_generichash_update", {CryptoGenerichashUpdate, 3}},
-          {"crypto_generichash_final", {CryptoGenerichashFinal, 3}}};
+          {"crypto_generichash_final", {CryptoGenerichashFinal, 3}},
+          {"crypto_generichash_keygen", {CryptoGenerichashKeygen, 1}}};
 };
 
 // Initialize libsodium and inject sodiuma object into js globals

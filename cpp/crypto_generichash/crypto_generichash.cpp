@@ -74,5 +74,19 @@ CryptoGenerichashFinal(facebook::jsi::Runtime &runtime,
       out_len));
 }
 
+facebook::jsi::Value
+CryptoGenerichashKeygen(facebook::jsi::Runtime &runtime,
+                        const facebook::jsi::Value &,
+                        const facebook::jsi::Value *arguments, size_t) {
+  unsigned char k[crypto_generichash_KEYBYTES];
+
+  crypto_generichash_keygen(k);
+
+  memcpy(arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime),
+         k, sizeof(k));
+
+  return facebook::jsi::Value::undefined();
+}
+
 } // namespace sodiuma
 } // namespace s77rt

@@ -13,7 +13,7 @@ npm install @s77rt/react-native-sodium
 
 ## Documentation
 
-### crypto_generichash
+### crypto_generichash single-part
 
 ```js
 const textEncoder = new TextEncoder();
@@ -37,7 +37,7 @@ console.log("Hash:", toHex(output));
 // Hash: 5dfe64841b066b33f8504400d7b77475e6e361a7a1a02249a6121aac16d2e8bb
 ```
 
-### crypto_generichash multipart
+### crypto_generichash multi-part
 
 ```js
 const textEncoder = new TextEncoder();
@@ -74,6 +74,13 @@ __s77rt__sodiuma.crypto_generichash_final(
 );
 console.log("Hash:", toHex(output));
 // Hash: 5dfe64841b066b33f8504400d7b77475e6e361a7a1a02249a6121aac16d2e8bb
+```
+
+### crypto_generichash_keygen
+
+```js
+const k = new Uint8Array(32);
+__s77rt__sodiuma.crypto_generichash_keygen(k.buffer);
 ```
 
 ## License
