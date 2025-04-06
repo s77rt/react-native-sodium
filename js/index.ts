@@ -41,6 +41,13 @@ type Sodium = {
 		outputLen: number
 	) => number;
 	crypto_generichash_keygen: (k: ArrayBuffer) => void;
+	crypto_shorthash: (
+		output: ArrayBuffer,
+		input: ArrayBuffer,
+		inputLen: number,
+		k: ArrayBuffer
+	) => number;
+	crypto_shorthash_keygen: (k: ArrayBuffer) => void;
 };
 
 // TODO(s77rt): Copy & cache host object properties

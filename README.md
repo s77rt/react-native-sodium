@@ -77,6 +77,8 @@ randombytes_buf_deterministic(buf: ArrayBuffer, size: number, seed: ArrayBuffer)
 const buf = new ArrayBuffer(8);
 const seed = toArrayBuffer("Fennec fox".padEnd(32, "\0")); // seed must be randombytes_SEEDBYTES bytes long.
 sodium.randombytes_buf_deterministic(buf, buf.byteLength, seed);
+console.log("Uint8Array:", new Uint8Array(buf));
+// Uint8Array: {0: 213, 1: 162, 2: 125, 3: 191, 4: 183, 5: 31, 6: 85, 7: 80}
 ```
 
 </details>
@@ -182,6 +184,40 @@ sodium.crypto_generichash_keygen(k);
 ```
 
 </details>
+
+### Short-input hashing
+
+#### Short hash
+
+```ts
+crypto_shorthash(output: ArrayBuffer, input: ArrayBuffer, inputLen: number, k: ArrayBuffer): number;
+```
+
+<details>
+<summary>Example</summary>
+
+```ts
+const output = new ArrayBuffer(8);
+const input = toArrayBuffer("abc");
+const k = toArrayBuffer("thekey".padEnd(16, "\0")); // k must be crypto_shorthash_KEYBYTES bytes long.
+sodium.crypto_shorthash(output, input, input.byteLength, k);
+console.log("Hash:", toHex(output));
+// Hash: 5985d7cfca5d01a0
+```
+
+#### Keygen
+
+```ts
+crypto_shorthash_keygen(k: ArrayBuffer): void;
+```
+
+<details>
+<summary>Example</summary>
+
+```ts
+const k = new ArrayBuffer(16);
+sodium.crypto_shorthash_keygen(k);
+```
 
 ## License
 

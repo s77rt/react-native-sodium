@@ -22,6 +22,12 @@
 		"react-native",
 		"cryptography",
 		"crypto",
+		"encryption",
+		"decryption",
+		"hashing",
+		"encoding",
+		"decoding",
+		"base64",
 		"libsodium",
 		"sodium"
 	],

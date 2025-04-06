@@ -1,6 +1,7 @@
 #pragma once
 
 #include "crypto_generichash/crypto_generichash.h"
+#include "crypto_shorthash/crypto_shorthash.h"
 #include "randombytes/randombytes.h"
 
 #include <jsi/jsi.h>
@@ -31,7 +32,9 @@ private:
           {"crypto_generichash_init", {CryptoGenerichashInit, 4}},
           {"crypto_generichash_update", {CryptoGenerichashUpdate, 3}},
           {"crypto_generichash_final", {CryptoGenerichashFinal, 3}},
-          {"crypto_generichash_keygen", {CryptoGenerichashKeygen, 1}}};
+          {"crypto_generichash_keygen", {CryptoGenerichashKeygen, 1}},
+          {"crypto_shorthash", {CryptoShorthash, 4}},
+          {"crypto_shorthash_keygen", {CryptoShorthashKeygen, 1}}};
 };
 
 // Initialize libsodium and inject sodiuma object into js globals
