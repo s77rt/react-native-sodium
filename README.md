@@ -75,7 +75,9 @@ randombytes_buf_deterministic(buf: ArrayBuffer, size: number, seed: ArrayBuffer)
 
 ```ts
 const buf = new ArrayBuffer(8);
-const seed = toArrayBuffer("Fennec fox".padEnd(32, "\0")); // seed must be randombytes_SEEDBYTES bytes long.
+const seed = toArrayBuffer(
+	"Fennec fox".padEnd(sodium.randombytes_SEEDBYTES, "\0") // seed must be randombytes_SEEDBYTES bytes long.
+);
 sodium.randombytes_buf_deterministic(buf, buf.byteLength, seed);
 console.log("Uint8Array:", new Uint8Array(buf));
 // Uint8Array: {0: 213, 1: 162, 2: 125, 3: 191, 4: 183, 5: 31, 6: 85, 7: 80}
@@ -125,7 +127,7 @@ crypto_generichash(output: ArrayBuffer, outputLen: number, input: ArrayBuffer, i
 <summary>Example</summary>
 
 ```ts
-const output = new ArrayBuffer(32);
+const output = new ArrayBuffer(sodium.crypto_generichash_BYTES);
 const input = toArrayBuffer("abc");
 const key = toArrayBuffer("thekey");
 sodium.crypto_generichash(
@@ -154,7 +156,7 @@ crypto_generichash_final(state: Record<string, never>, output: ArrayBuffer, outp
 <summary>Example</summary>
 
 ```ts
-const output = new ArrayBuffer(32);
+const output = new ArrayBuffer(sodium.crypto_generichash_BYTES);
 const input1 = toArrayBuffer("ab");
 const input2 = toArrayBuffer("c");
 const key = toArrayBuffer("thekey");
@@ -179,7 +181,7 @@ crypto_generichash_keygen(k: ArrayBuffer): void;
 <summary>Example</summary>
 
 ```ts
-const k = new ArrayBuffer(32);
+const k = new ArrayBuffer(sodium.crypto_generichash_KEYBYTES);
 sodium.crypto_generichash_keygen(k);
 ```
 
@@ -197,9 +199,11 @@ crypto_shorthash(output: ArrayBuffer, input: ArrayBuffer, inputLen: number, k: A
 <summary>Example</summary>
 
 ```ts
-const output = new ArrayBuffer(8);
+const output = new ArrayBuffer(sodium.crypto_shorthash_BYTES);
 const input = toArrayBuffer("abc");
-const k = toArrayBuffer("thekey".padEnd(16, "\0")); // k must be crypto_shorthash_KEYBYTES bytes long.
+const k = toArrayBuffer(
+	"thekey".padEnd(sodium.crypto_shorthash_KEYBYTES, "\0") // k must be crypto_shorthash_KEYBYTES bytes long.
+);
 sodium.crypto_shorthash(output, input, input.byteLength, k);
 console.log("Hash:", toHex(output));
 // Hash: 5985d7cfca5d01a0
@@ -217,7 +221,7 @@ crypto_shorthash_keygen(k: ArrayBuffer): void;
 <summary>Example</summary>
 
 ```ts
-const k = new ArrayBuffer(16);
+const k = new ArrayBuffer(sodium.crypto_shorthash_KEYBYTES);
 sodium.crypto_shorthash_keygen(k);
 ```
 

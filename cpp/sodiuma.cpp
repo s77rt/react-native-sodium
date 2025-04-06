@@ -1,13 +1,23 @@
 #include "sodiuma.h"
 
-#include <sodium.h>
-
 namespace s77rt {
 namespace sodiuma {
 
 facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
                                   const facebook::jsi::PropNameID &name) {
   const std::string property_name = name.utf8(runtime);
+
+  if (auto property_constant = property_constants_.find(property_name);
+      property_constant != property_constants_.end()) {
+
+    if (property_constant->second.index() == 0) {
+      return facebook::jsi::Value(
+          static_cast<double>(std::get<0>(property_constant->second)));
+    }
+
+    return facebook::jsi::Value(facebook::jsi::String::createFromAscii(
+        runtime, std::get<1>(property_constant->second)));
+  }
 
   if (auto property_function = property_functions_.find(property_name);
       property_function != property_functions_.end()) {
@@ -25,6 +35,10 @@ facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
 std::vector<facebook::jsi::PropNameID>
 Sodiuma::getPropertyNames(facebook::jsi::Runtime &runtime) {
   std::vector<facebook::jsi::PropNameID> property_names;
+
+  for (const auto &[key, _] : property_constants_) {
+    property_names.push_back(facebook::jsi::PropNameID::forAscii(runtime, key));
+  }
 
   for (const auto &[key, _] : property_functions_) {
     property_names.push_back(facebook::jsi::PropNameID::forAscii(runtime, key));

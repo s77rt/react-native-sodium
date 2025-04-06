@@ -6,6 +6,21 @@ if (!globalThis.__s77rt__sodiuma) {
 }
 
 type Sodium = {
+	randombytes_BYTES_MAX: number;
+	randombytes_SEEDBYTES: number;
+
+	crypto_generichash_BYTES_MIN: number;
+	crypto_generichash_BYTES_MAX: number;
+	crypto_generichash_BYTES: number;
+	crypto_generichash_KEYBYTES_MIN: number;
+	crypto_generichash_KEYBYTES_MAX: number;
+	crypto_generichash_KEYBYTES: number;
+	crypto_generichash_PRIMITIVE: string;
+
+	crypto_shorthash_BYTES: number;
+	crypto_shorthash_KEYBYTES: number;
+	crypto_shorthash_PRIMITIVE: string;
+
 	randombytes_random: () => number;
 	randombytes_uniform: (upperBound: number) => number;
 	randombytes_buf: (buf: ArrayBuffer, size: number) => void;
@@ -16,6 +31,7 @@ type Sodium = {
 	) => void;
 	randombytes_close: () => number;
 	randombytes_stir: () => void;
+
 	crypto_generichash: (
 		output: ArrayBuffer,
 		outputLen: number,
@@ -41,6 +57,7 @@ type Sodium = {
 		outputLen: number
 	) => number;
 	crypto_generichash_keygen: (k: ArrayBuffer) => void;
+
 	crypto_shorthash: (
 		output: ArrayBuffer,
 		input: ArrayBuffer,
