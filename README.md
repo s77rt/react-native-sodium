@@ -28,6 +28,7 @@ randombytes_random(): number;
 
 ```ts
 const rnd = sodium.randombytes_random();
+console.log("Random number:", rnd);
 ```
 
 </details>
@@ -44,6 +45,7 @@ randombytes_uniform(upperBound: number): number;
 ```ts
 const upperBound = 100;
 const rnd = sodium.randombytes_uniform(upperBound);
+console.log("Random number:", rnd);
 ```
 
 </details>
@@ -60,6 +62,7 @@ randombytes_buf(buf: ArrayBuffer, size: number): void;
 ```ts
 const buf = new ArrayBuffer(8);
 sodium.randombytes_buf(buf, buf.byteLength);
+console.log("Random byte sequence:", new Uint8Array(buf));
 ```
 
 </details>
@@ -75,12 +78,10 @@ randombytes_buf_deterministic(buf: ArrayBuffer, size: number, seed: ArrayBuffer)
 
 ```ts
 const buf = new ArrayBuffer(8);
-const seed = toArrayBuffer(
-	"Fennec fox".padEnd(sodium.randombytes_SEEDBYTES, "\0") // seed must be randombytes_SEEDBYTES bytes long.
-);
+const seed = new ArrayBuffer(sodium.randombytes_SEEDBYTES);
+new TextEncoder().encodeInto("Couscous", new Uint8Array(seed));
 sodium.randombytes_buf_deterministic(buf, buf.byteLength, seed);
-console.log("Uint8Array:", new Uint8Array(buf));
-// Uint8Array: {0: 213, 1: 162, 2: 125, 3: 191, 4: 183, 5: 31, 6: 85, 7: 80}
+console.log("Deterministic random byte sequence:", new Uint8Array(buf));
 ```
 
 </details>
@@ -128,8 +129,9 @@ crypto_generichash(output: ArrayBuffer, outputLen: number, input: ArrayBuffer, i
 
 ```ts
 const output = new ArrayBuffer(sodium.crypto_generichash_BYTES);
-const input = toArrayBuffer("abc");
-const key = toArrayBuffer("thekey");
+const input = new TextEncoder().encode("Fennec fox").buffer;
+const key = new ArrayBuffer(sodium.crypto_generichash_KEYBYTES);
+sodium.crypto_generichash_keygen(key);
 sodium.crypto_generichash(
 	output,
 	output.byteLength,
@@ -138,8 +140,8 @@ sodium.crypto_generichash(
 	key,
 	key.byteLength
 );
+console.log("Key:", toHex(key));
 console.log("Hash:", toHex(output));
-// Hash: 5dfe64841b066b33f8504400d7b77475e6e361a7a1a02249a6121aac16d2e8bb
 ```
 
 </details>
@@ -157,16 +159,17 @@ crypto_generichash_final(state: Record<string, never>, output: ArrayBuffer, outp
 
 ```ts
 const output = new ArrayBuffer(sodium.crypto_generichash_BYTES);
-const input1 = toArrayBuffer("ab");
-const input2 = toArrayBuffer("c");
-const key = toArrayBuffer("thekey");
+const input1 = new TextEncoder().encode("Fennec ").buffer;
+const input2 = new TextEncoder().encode("fox").buffer;
+const key = new ArrayBuffer(sodium.crypto_generichash_KEYBYTES);
 const state = {};
+sodium.crypto_generichash_keygen(key);
 sodium.crypto_generichash_init(state, key, key.byteLength, output.byteLength);
 sodium.crypto_generichash_update(state, input1, input1.byteLength);
 sodium.crypto_generichash_update(state, input2, input2.byteLength);
 sodium.crypto_generichash_final(state, output, output.byteLength);
+console.log("Key:", toHex(key));
 console.log("Hash:", toHex(output));
-// Hash: 5dfe64841b066b33f8504400d7b77475e6e361a7a1a02249a6121aac16d2e8bb
 ```
 
 </details>
@@ -183,6 +186,7 @@ crypto_generichash_keygen(k: ArrayBuffer): void;
 ```ts
 const k = new ArrayBuffer(sodium.crypto_generichash_KEYBYTES);
 sodium.crypto_generichash_keygen(k);
+console.log("Key:", toHex(k));
 ```
 
 </details>
@@ -200,13 +204,12 @@ crypto_shorthash(output: ArrayBuffer, input: ArrayBuffer, inputLen: number, k: A
 
 ```ts
 const output = new ArrayBuffer(sodium.crypto_shorthash_BYTES);
-const input = toArrayBuffer("abc");
-const k = toArrayBuffer(
-	"thekey".padEnd(sodium.crypto_shorthash_KEYBYTES, "\0") // k must be crypto_shorthash_KEYBYTES bytes long.
-);
+const input = new TextEncoder().encode("Fennec fox").buffer;
+const k = new ArrayBuffer(sodium.crypto_shorthash_KEYBYTES);
+sodium.crypto_shorthash_keygen(k);
 sodium.crypto_shorthash(output, input, input.byteLength, k);
+console.log("Key:", toHex(k));
 console.log("Hash:", toHex(output));
-// Hash: 5985d7cfca5d01a0
 ```
 
 </details>
@@ -223,6 +226,7 @@ crypto_shorthash_keygen(k: ArrayBuffer): void;
 ```ts
 const k = new ArrayBuffer(sodium.crypto_shorthash_KEYBYTES);
 sodium.crypto_shorthash_keygen(k);
+console.log("Key:", toHex(k));
 ```
 
 </details>
