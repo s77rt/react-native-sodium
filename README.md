@@ -205,6 +205,8 @@ console.log("Hash:", toHex(output));
 // Hash: 5985d7cfca5d01a0
 ```
 
+</details>
+
 #### Keygen
 
 ```ts
@@ -218,6 +220,8 @@ crypto_shorthash_keygen(k: ArrayBuffer): void;
 const k = new ArrayBuffer(16);
 sodium.crypto_shorthash_keygen(k);
 ```
+
+</details>
 
 ## License
 
