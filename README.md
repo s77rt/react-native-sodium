@@ -11,7 +11,7 @@ A fast cryptography module for React Native using libsodium.
 npm install @s77rt/react-native-sodium
 ```
 
-## Documentation
+## Usage
 
 For detailed documentation checkout [libsodium Documentation](https://doc.libsodium.org/).
 
@@ -22,8 +22,6 @@ For detailed documentation checkout [libsodium Documentation](https://doc.libsod
 ```ts
 randombytes_random(): number;
 ```
-
-Returns an unpredictable value between `0` and `0xffffffff` (included).
 
 <details>
 <summary>Example</summary>
@@ -39,8 +37,6 @@ const rnd = sodium.randombytes_random();
 ```ts
 randombytes_uniform(upperBound: number): number;
 ```
-
-Returns an unpredictable value between `0` and `upperBound` (excluded).
 
 <details>
 <summary>Example</summary>
@@ -58,8 +54,6 @@ const rnd = sodium.randombytes_uniform(upperBound);
 randombytes_buf(buf: ArrayBuffer, size: number): void;
 ```
 
-Fills `buf` with an unpredictable sequence of `size` bytes.
-
 <details>
 <summary>Example</summary>
 
@@ -76,14 +70,12 @@ sodium.randombytes_buf(buf, buf.byteLength);
 randombytes_buf_deterministic(buf: ArrayBuffer, size: number, seed: ArrayBuffer): void;
 ```
 
-Fills `buf` with a predictable sequence of `size` bytes given a `randombytes_SEEDBYTES` bytes long `seed`.
-
 <details>
 <summary>Example</summary>
 
 ```ts
 const buf = new ArrayBuffer(8);
-const seed = toArrayBuffer("Fennec fox".padEnd(32, "\0"));
+const seed = toArrayBuffer("Fennec fox".padEnd(32, "\0")); // seed must be randombytes_SEEDBYTES bytes long.
 sodium.randombytes_buf_deterministic(buf, buf.byteLength, seed);
 ```
 
@@ -94,8 +86,6 @@ sodium.randombytes_buf_deterministic(buf, buf.byteLength, seed);
 ```ts
 randombytes_close(): number;
 ```
-
-Deallocates the global resources used by the pseudo-random number generator.
 
 <details>
 <summary>Example</summary>
@@ -111,8 +101,6 @@ randombytes_close();
 ```ts
 randombytes_stir(): void;
 ```
-
-Reseeds the pseudo-random number generator.
 
 <details>
 <summary>Example</summary>
