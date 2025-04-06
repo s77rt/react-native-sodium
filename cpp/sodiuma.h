@@ -3,6 +3,7 @@
 #include "crypto_generichash/crypto_generichash.h"
 #include "crypto_shorthash/crypto_shorthash.h"
 #include "randombytes/randombytes.h"
+#include "sodium/utils.h"
 
 #include <jsi/jsi.h>
 #include <map>
@@ -20,7 +21,8 @@ public:
   getPropertyNames(facebook::jsi::Runtime &rt) override;
 
 private:
-  static inline const std::map<std::string, std::variant<size_t, std::string>>
+  static inline const std::map<std::string,
+                               std::variant<size_t, int, std::string>>
       property_constants_{
           {"randombytes_BYTES_MAX", randombytes_BYTES_MAX},
           {"randombytes_SEEDBYTES", randombytes_SEEDBYTES},
@@ -36,6 +38,13 @@ private:
           {"crypto_shorthash_BYTES", crypto_shorthash_BYTES},
           {"crypto_shorthash_KEYBYTES", crypto_shorthash_KEYBYTES},
           {"crypto_shorthash_PRIMITIVE", crypto_shorthash_PRIMITIVE},
+
+          {"sodium_base64_VARIANT_ORIGINAL", sodium_base64_VARIANT_ORIGINAL},
+          {"sodium_base64_VARIANT_ORIGINAL_NO_PADDING",
+           sodium_base64_VARIANT_ORIGINAL_NO_PADDING},
+          {"sodium_base64_VARIANT_URLSAFE", sodium_base64_VARIANT_URLSAFE},
+          {"sodium_base64_VARIANT_URLSAFE_NO_PADDING",
+           sodium_base64_VARIANT_URLSAFE_NO_PADDING},
       };
 
   static inline const std::map<
@@ -55,7 +64,19 @@ private:
           {"crypto_generichash_keygen", {CryptoGenerichashKeygen, 1}},
 
           {"crypto_shorthash", {CryptoShorthash, 4}},
-          {"crypto_shorthash_keygen", {CryptoShorthashKeygen, 1}}};
+          {"crypto_shorthash_keygen", {CryptoShorthashKeygen, 1}},
+
+          {"sodium_memcmp", {SodiumMemcmp, 3}},
+          {"sodium_bin2hex", {SodiumBin2hex, 4}},
+          {"sodium_hex2bin", {SodiumHex2bin, 7}},
+          {"sodium_bin2base64", {SodiumBin2base64, 5}},
+          {"sodium_base642bin", {SodiumBase642bin, 8}},
+          {"sodium_increment", {SodiumIncrement, 2}},
+          {"sodium_add", {SodiumAdd, 3}},
+          {"sodium_sub", {SodiumSub, 3}},
+          {"sodium_compare", {SodiumCompare, 3}},
+          {"sodium_is_zero", {SodiumIsZero, 2}},
+          {"sodium_stackzero", {SodiumStackzero, 1}}};
 };
 
 // Initialize libsodium and inject sodiuma object into js globals

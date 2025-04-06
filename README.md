@@ -140,8 +140,24 @@ sodium.crypto_generichash(
 	key,
 	key.byteLength
 );
-console.log("Key:", toHex(key));
-console.log("Hash:", toHex(output));
+console.log(
+	"Key:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(key.byteLength * 2 + 1),
+		key.byteLength * 2 + 1,
+		key,
+		key.byteLength
+	)
+);
+console.log(
+	"Hash:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(output.byteLength * 2 + 1),
+		output.byteLength * 2 + 1,
+		output,
+		output.byteLength
+	)
+);
 ```
 
 </details>
@@ -168,8 +184,24 @@ sodium.crypto_generichash_init(state, key, key.byteLength, output.byteLength);
 sodium.crypto_generichash_update(state, input1, input1.byteLength);
 sodium.crypto_generichash_update(state, input2, input2.byteLength);
 sodium.crypto_generichash_final(state, output, output.byteLength);
-console.log("Key:", toHex(key));
-console.log("Hash:", toHex(output));
+console.log(
+	"Key:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(key.byteLength * 2 + 1),
+		key.byteLength * 2 + 1,
+		key,
+		key.byteLength
+	)
+);
+console.log(
+	"Hash:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(output.byteLength * 2 + 1),
+		output.byteLength * 2 + 1,
+		output,
+		output.byteLength
+	)
+);
 ```
 
 </details>
@@ -186,7 +218,15 @@ crypto_generichash_keygen(k: ArrayBuffer): void;
 ```ts
 const k = new ArrayBuffer(sodium.crypto_generichash_KEYBYTES);
 sodium.crypto_generichash_keygen(k);
-console.log("Key:", toHex(k));
+console.log(
+	"Key:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(k.byteLength * 2 + 1),
+		k.byteLength * 2 + 1,
+		k,
+		k.byteLength
+	)
+);
 ```
 
 </details>
@@ -208,8 +248,24 @@ const input = new TextEncoder().encode("Fennec fox").buffer;
 const k = new ArrayBuffer(sodium.crypto_shorthash_KEYBYTES);
 sodium.crypto_shorthash_keygen(k);
 sodium.crypto_shorthash(output, input, input.byteLength, k);
-console.log("Key:", toHex(k));
-console.log("Hash:", toHex(output));
+console.log(
+	"Key:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(k.byteLength * 2 + 1),
+		k.byteLength * 2 + 1,
+		k,
+		k.byteLength
+	)
+);
+console.log(
+	"Hash:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(output.byteLength * 2 + 1),
+		output.byteLength * 2 + 1,
+		output,
+		output.byteLength
+	)
+);
 ```
 
 </details>
@@ -226,7 +282,15 @@ crypto_shorthash_keygen(k: ArrayBuffer): void;
 ```ts
 const k = new ArrayBuffer(sodium.crypto_shorthash_KEYBYTES);
 sodium.crypto_shorthash_keygen(k);
-console.log("Key:", toHex(k));
+console.log(
+	"Key:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(k.byteLength * 2 + 1),
+		k.byteLength * 2 + 1,
+		k,
+		k.byteLength
+	)
+);
 ```
 
 </details>

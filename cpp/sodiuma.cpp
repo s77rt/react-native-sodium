@@ -9,19 +9,20 @@ facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
 
   if (auto property_constant = property_constants_.find(property_name);
       property_constant != property_constants_.end()) {
-
-    if (property_constant->second.index() == 0) {
+    switch (property_constant->second.index()) {
+    case 0: // size_t
       return facebook::jsi::Value(
           static_cast<double>(std::get<0>(property_constant->second)));
+    case 1: // int
+      return facebook::jsi::Value(std::get<1>(property_constant->second));
+    default: // std::string
+      return facebook::jsi::Value(facebook::jsi::String::createFromAscii(
+          runtime, std::get<2>(property_constant->second)));
     }
-
-    return facebook::jsi::Value(facebook::jsi::String::createFromAscii(
-        runtime, std::get<1>(property_constant->second)));
   }
 
   if (auto property_function = property_functions_.find(property_name);
       property_function != property_functions_.end()) {
-
     auto [func, func_length] = property_function->second;
 
     return facebook::jsi::Function::createFromHostFunction(
