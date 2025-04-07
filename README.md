@@ -298,6 +298,7 @@ console.log(
 ## FAQ
 
 **Q: Why functions that take `char*` parameters sometimes use `ArrayBuffer` and other times use `string`?**
+
 **A:** If the input is encoding-dependant an `ArrayBuffer` is used and it's the responsibility of the user to choose the desired encoding. You can use [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/TextEncoder) to generate an array buffer with UTF-8 encoding. On the other hand if the input is guaranteed to be representable in ASCII then it will be interpreted as ASCII and a `string` is used.
 
 If the input is meant to be written into then an `ArrayBuffer` must be used since `string`s are immutable.
