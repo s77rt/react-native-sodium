@@ -1,3 +1,2 @@
 -   Cache functions
--   Use sodium_bin2hex and remove js helpers
 -   Change description (in README, package.json and github) to say more than "cryptography"

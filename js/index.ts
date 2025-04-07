@@ -1,5 +1,4 @@
 import "./NativeRTNSodium";
-export * from "./helpers";
 
 if (!globalThis.__s77rt__sodiuma) {
 	console.error("[@s77rt/react-native-sodium] sodiuma object not found");
