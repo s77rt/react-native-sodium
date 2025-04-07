@@ -65,14 +65,14 @@ facebook::jsi::Value SodiumHex2bin(facebook::jsi::Runtime &runtime,
 
   size_t bin_len;
 
-  uint8_t *hex_end =
+  uint8_t *const hex_end =
       arguments[6].isNull()
           ? NULL
           : arguments[6].getObject(runtime).getArrayBuffer(runtime).data(
                 runtime);
 
   int ret = sodium_hex2bin(bin, bin_max_len, hex, hex_len, ignore, &bin_len,
-                           reinterpret_cast<const char **>(hex_end));
+                           reinterpret_cast<const char **const>(hex_end));
 
   memcpy(arguments[5].getObject(runtime).getArrayBuffer(runtime).data(runtime),
          &bin_len, sizeof(bin_len));
