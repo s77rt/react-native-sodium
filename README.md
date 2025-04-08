@@ -303,12 +303,61 @@ console.log(
 sodium_memcmp(b1_: ArrayBuffer, b2_: ArrayBuffer, len: number): number;
 ```
 
+<details>
+<summary>Example</summary>
+
+```ts
+const b1_ = new Uint8Array([7, 7, 1, 2]).buffer;
+const b2_ = new Uint8Array([7, 7, 100, 200]).buffer;
+console.log("isEqual:", sodium.sodium_memcmp(b1_, b2_, 2) === 0);
+```
+
+</details>
+
 #### Hexadecimal encoding/decoding
 
 ```ts
 sodium_bin2hex(hex: ArrayBuffer, hexMaxLen: number, bin: ArrayBuffer, binLen: number): string;
 sodium_hex2bin(bin: ArrayBuffer, binMaxLen: number, hex: string, hexLen: number, ignore: string | null, binLen: ArrayBuffer, hexEnd: ArrayBuffer | null): number;
 ```
+
+<details>
+<summary>Example 1 (encoding)</summary>
+
+```ts
+const bin = new Uint8Array([0, 255, 0, 255]).buffer;
+console.log(
+	"Hex:",
+	sodium.sodium_bin2hex(
+		new ArrayBuffer(bin.byteLength * 2 + 1), // Each byte is encoded into two characters, plus one for the null character
+		bin.byteLength * 2 + 1,
+		bin,
+		bin.byteLength
+	)
+);
+```
+
+</details>
+
+<details>
+<summary>Example 2 (decoding)</summary>
+
+```ts
+const hex = "00ff00ff";
+const bin = new ArrayBuffer(hex.length / 2); // Every two characters fit into a single byte
+sodium.sodium_hex2bin(
+	bin,
+	bin.byteLength,
+	hex,
+	hex.length,
+	null,
+	new ArrayBuffer(8), // 8 bytes are needed to store a size_t number, not used in this example
+	null
+);
+console.log("Binary:", new Uint8Array(bin));
+```
+
+</details>
 
 #### Base64 encoding/decoding
 
@@ -317,6 +366,51 @@ sodium_base64_encoded_len(binLen: number, variant: number): number;
 sodium_bin2base64(b64: ArrayBuffer, b64MaxLen: number, bin: ArrayBuffer, binLen: number, variant: number): string;
 sodium_base642bin(bin: ArrayBuffer, binMaxLen: number, b64: string, b64Len: number, ignore: string | null, binLen: ArrayBuffer, b64End: ArrayBuffer | null, variant: number): number;
 ```
+
+<details>
+<summary>Example 1 (encoding)</summary>
+
+```ts
+const variant = sodium.sodium_base64_VARIANT_ORIGINAL;
+const bin = new Uint8Array([0, 255, 0, 255]).buffer;
+const b64Len = sodium.sodium_base64_encoded_len(bin.byteLength, variant);
+console.log(
+	"Base64:",
+	sodium.sodium_bin2base64(
+		new ArrayBuffer(b64Len),
+		b64Len,
+		bin,
+		bin.byteLength,
+		variant
+	)
+);
+```
+
+</details>
+
+<details>
+<summary>Example 2 (decoding)</summary>
+
+```ts
+const variant = sodium.sodium_base64_VARIANT_ORIGINAL;
+const b64 = "AP8A/w==";
+const bin = new ArrayBuffer(Math.ceil((b64.length / 4) * 3)); // Bin will take at most (b64.length / 4) * 3 bytes. Use binLen to get the exact length
+const binLen = new ArrayBuffer(8); // 8 bytes are needed to store a size_t number
+sodium.sodium_base642bin(
+	bin,
+	bin.byteLength,
+	b64,
+	b64.length,
+	null,
+	binLen,
+	null,
+	variant
+);
+const binLenAsNumber = Number(new DataView(binLen).getBigUint64(0, true)); // Safe as long as you are not working with a 9PB data
+console.log("Binary:", new Uint8Array(bin.slice(0, binLenAsNumber)));
+```
+
+</details>
 
 #### Large numbers arithmetic operations
 
@@ -327,16 +421,45 @@ sodium_sub(a: ArrayBuffer, b: ArrayBuffer, len: number): void;
 sodium_compare(b1_: ArrayBuffer, b2_: ArrayBuffer, len: number): number;
 ```
 
+<details>
+<summary>Example</summary>
+
+```ts
+const a = new Uint8Array(16).fill(255, 0, 10).buffer; // a=1208925819614629174706175
+const b = new Uint8Array(16).fill(255, 0, 10).buffer; // b=1208925819614629174706175
+console.log("Comparison", sodium.sodium_compare(a, b, a.byteLength));
+sodium.sodium_increment(a, a.byteLength);
+console.log("Comparison", sodium.sodium_compare(a, b, a.byteLength));
+sodium.sodium_sub(a, b, a.byteLength);
+console.log("Comparison", sodium.sodium_compare(a, b, a.byteLength));
+```
+
+</details>
+
 #### Testing for all zeros
 
 ```ts
 sodium_is_zero(n: ArrayBuffer, nLen: number): number;
 ```
 
+<details>
+<summary>Example</summary>
+
+```ts
+const n = new ArrayBuffer(8);
+console.log("isZero", sodium.sodium_is_zero(n, n.byteLength) === 1);
+```
+
+</details>
+
 #### Clearing the stack
 
 ```ts
 sodium_stackzero(len: number): void;
+```
+
+```ts
+sodium.sodium_stackzero(4);
 ```
 
 ## FAQ

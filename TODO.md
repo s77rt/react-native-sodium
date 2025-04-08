@@ -4,3 +4,4 @@
 -   Revisit cases where memcpy is used and avoid it if possible
 -   Check if crypto_generichash_init key can be null
 -   Should I export sodium_init()?
+-   Update features list
