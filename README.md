@@ -458,9 +458,14 @@ console.log("isZero", sodium.sodium_is_zero(n, n.byteLength) === 1);
 sodium_stackzero(len: number): void;
 ```
 
+<details>
+<summary>Example</summary>
+
 ```ts
 sodium.sodium_stackzero(4);
 ```
+
+</details>
 
 ## FAQ
 
