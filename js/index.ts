@@ -64,6 +64,47 @@ type Sodium = {
 		k: ArrayBuffer
 	) => number;
 	crypto_shorthash_keygen: (k: ArrayBuffer) => void;
+
+	sodium_memcmp: (b1_: ArrayBuffer, b2_: ArrayBuffer, len: number) => number;
+	sodium_bin2hex: (
+		hex: ArrayBuffer,
+		hexMaxLen: number,
+		bin: ArrayBuffer,
+		binLen: number
+	) => string;
+	sodium_hex2bin: (
+		bin: ArrayBuffer,
+		binMaxLen: number,
+		hex: string,
+		hexLen: number,
+		ignore: string | null,
+		binLen: ArrayBuffer,
+		hexEnd: ArrayBuffer | null
+	) => number;
+	sodium_base64_encoded_len: (binLen: number, variant: number) => number;
+	sodium_bin2base64: (
+		b64: ArrayBuffer,
+		b64MaxLen: number,
+		bin: ArrayBuffer,
+		binLen: number,
+		variant: number
+	) => string;
+	sodium_base642bin: (
+		bin: ArrayBuffer,
+		binMaxLen: number,
+		b64: string,
+		b64Len: number,
+		ignore: string | null,
+		binLen: ArrayBuffer,
+		b64End: ArrayBuffer | null,
+		variant: number
+	) => number;
+	sodium_increment: (n: ArrayBuffer, nLen: number) => void;
+	sodium_add: (a: ArrayBuffer, b: ArrayBuffer, len: number) => void;
+	sodium_sub: (a: ArrayBuffer, b: ArrayBuffer, len: number) => void;
+	sodium_compare: (b1_: ArrayBuffer, b2_: ArrayBuffer, len: number) => number;
+	sodium_is_zero: (n: ArrayBuffer, nLen: number) => number;
+	sodium_stackzero: (len: number) => void;
 };
 
 // TODO(s77rt): Copy & cache host object properties

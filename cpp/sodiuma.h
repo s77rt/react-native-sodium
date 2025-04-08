@@ -69,6 +69,7 @@ private:
           {"sodium_memcmp", {SodiumMemcmp, 3}},
           {"sodium_bin2hex", {SodiumBin2hex, 4}},
           {"sodium_hex2bin", {SodiumHex2bin, 7}},
+          {"sodium_base64_encoded_len", {SodiumBase64EncodedLen, 2}},
           {"sodium_bin2base64", {SodiumBin2base64, 5}},
           {"sodium_base642bin", {SodiumBase642bin, 8}},
           {"sodium_increment", {SodiumIncrement, 2}},

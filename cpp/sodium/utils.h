@@ -17,6 +17,11 @@ facebook::jsi::Value SodiumHex2bin(facebook::jsi::Runtime &,
                                    const facebook::jsi::Value &,
                                    const facebook::jsi::Value *, size_t);
 
+facebook::jsi::Value SodiumBase64EncodedLen(facebook::jsi::Runtime &,
+                                            const facebook::jsi::Value &,
+                                            const facebook::jsi::Value *,
+                                            size_t);
+
 facebook::jsi::Value SodiumBin2base64(facebook::jsi::Runtime &,
                                       const facebook::jsi::Value &,
                                       const facebook::jsi::Value *, size_t);
