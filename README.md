@@ -547,9 +547,9 @@ sodium.sodium_stackzero(4);
 
 If the input is meant to be written into then an `ArrayBuffer` must be used since `string`s are immutable.
 
-**Q: A function is missing or not implemented**
+**Q: Why are some libsodium functions not implemented?**
 
-**A:** This libarry aims to provide a 1:1 libsodium compatibility. Functions are implemented progressively. Feel free to [submit an issue](https://github.com/s77rt/react-native-sodium/issues/new) for prioritization.
+**A:** This library aims to provide a 1:1 libsodium compatibility however functions are implemented progressively and per priority and needs. Feel free to [submit an issue](https://github.com/s77rt/react-native-sodium/issues/new) for prioritization.
 
 PRs are welcome!
 
