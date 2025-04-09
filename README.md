@@ -15,6 +15,10 @@ npm install @s77rt/react-native-sodium
 
 For detailed documentation checkout [libsodium Documentation](https://doc.libsodium.org/).
 
+### Initialization
+
+TODO
+
 ### Generating random data
 
 #### Random number

@@ -20,6 +20,8 @@ type Sodium = {
 	crypto_shorthash_KEYBYTES: number;
 	crypto_shorthash_PRIMITIVE: string;
 
+	sodium_init: () => number;
+
 	randombytes_random: () => number;
 	randombytes_uniform: (upperBound: number) => number;
 	randombytes_buf: (buf: ArrayBuffer, size: number) => void;

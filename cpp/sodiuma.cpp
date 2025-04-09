@@ -49,10 +49,6 @@ Sodiuma::getPropertyNames(facebook::jsi::Runtime &runtime) {
 }
 
 void Install(facebook::jsi::Runtime &runtime) {
-  if (sodium_init() < 0) {
-    throw std::runtime_error{"Failed to initialize sodium"};
-  }
-
   runtime.global().setProperty(runtime, "__s77rt__sodiuma",
                                facebook::jsi::Object::createFromHostObject(
                                    runtime, std::make_shared<Sodiuma>()));

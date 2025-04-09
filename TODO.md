@@ -1,5 +1,5 @@
 -   Cache functions
 -   Change description (in README, package.json and github) to say more than "cryptography"
--   Should I export sodium_init()?
+-   Should I export sodium_init()? And don't init implicitly
 -   Update features list
 -   Add in FAQ why there is missing functions

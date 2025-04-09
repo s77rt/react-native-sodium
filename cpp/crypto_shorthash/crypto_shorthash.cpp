@@ -1,4 +1,4 @@
-#include "crypto_generichash.h"
+#include "crypto_shorthash.h"
 
 #include <sodium.h>
 

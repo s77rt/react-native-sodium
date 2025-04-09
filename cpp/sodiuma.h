@@ -3,6 +3,7 @@
 #include "crypto_generichash/crypto_generichash.h"
 #include "crypto_shorthash/crypto_shorthash.h"
 #include "randombytes/randombytes.h"
+#include "sodium/core.h"
 #include "sodium/utils.h"
 
 #include <jsi/jsi.h>
@@ -50,6 +51,8 @@ private:
   static inline const std::map<
       std::string, std::pair<facebook::jsi::HostFunctionType, unsigned int>>
       property_functions_{
+          {"sodium_init", {SodiumInit, 0}},
+
           {"randombytes_random", {RandombytesRandom, 0}},
           {"randombytes_uniform", {RandombytesUniform, 1}},
           {"randombytes_buf", {RandombytesBuf, 2}},
@@ -83,7 +86,7 @@ private:
           {"sodium_stackzero", {SodiumStackzero, 1}}};
 };
 
-// Initialize libsodium and inject sodiuma object into js globals
+// Inject sodiuma object into js globals
 void Install(facebook::jsi::Runtime &runtime);
 
 } // namespace sodiuma
