@@ -5,3 +5,4 @@
 -   Check if crypto_generichash_init key can be null
 -   Should I export sodium_init()?
 -   Update features list
+-   Add in FAQ why there is missing functions
