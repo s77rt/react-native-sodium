@@ -41,11 +41,8 @@ RandombytesBufDeterministic(facebook::jsi::Runtime &runtime,
   uint8_t *const buf =
       arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime);
   const double size = arguments[1].getNumber();
-
-  unsigned char seed[randombytes_SEEDBYTES];
-  memcpy(seed,
-         arguments[2].getObject(runtime).getArrayBuffer(runtime).data(runtime),
-         sizeof(seed));
+  uint8_t *const seed =
+      arguments[2].getObject(runtime).getArrayBuffer(runtime).data(runtime);
 
   randombytes_buf_deterministic(buf, size, seed);
 

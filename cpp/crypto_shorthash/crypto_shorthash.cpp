@@ -24,12 +24,10 @@ facebook::jsi::Value
 CryptoShorthashKeygen(facebook::jsi::Runtime &runtime,
                       const facebook::jsi::Value &,
                       const facebook::jsi::Value *arguments, size_t) {
-  unsigned char k[crypto_shorthash_KEYBYTES];
+  uint8_t *const k =
+      arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime);
 
   crypto_shorthash_keygen(k);
-
-  memcpy(arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime),
-         k, sizeof(k));
 
   return facebook::jsi::Value::undefined();
 }
