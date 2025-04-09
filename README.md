@@ -18,19 +18,12 @@ For detailed documentation checkout [libsodium Documentation](https://doc.libsod
 ### Initialization
 
 ```ts
-sodium_init(): number;
-```
+import sodium from "@s77rt/react-native-sodium";
 
-<details>
-<summary>Example</summary>
-
-```ts
 if (sodium.sodium_init() < 0) {
 	throw new Error("Failed to initialize sodium!");
 }
 ```
-
-</details>
 
 ### Generating random data
 
