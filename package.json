@@ -6,7 +6,8 @@
 	"source": "js/index",
 	"main": "js/index",
 	"files": [
-		"libsodium/src/libsodium",
+		"scripts",
+		"libsodium",
 		"cpp",
 		"js",
 		"android",
@@ -18,6 +19,9 @@
 		"!**/__fixtures__",
 		"!**/__mocks__"
 	],
+	"scripts": {
+		"prepare": "./scripts/prepare.sh"
+	},
 	"keywords": [
 		"react-native",
 		"cryptography",
