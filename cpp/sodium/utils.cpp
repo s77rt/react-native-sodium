@@ -5,6 +5,38 @@
 namespace s77rt {
 namespace sodiuma {
 
+facebook::jsi::Value SodiumPad(facebook::jsi::Runtime &runtime,
+                               const facebook::jsi::Value &,
+                               const facebook::jsi::Value *arguments, size_t) {
+  uint8_t *padded_buf_len_p =
+      arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+  uint8_t *buf =
+      arguments[1].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+  const double unpadded_buf_len = arguments[2].getNumber();
+  const double block_size = arguments[3].getNumber();
+  const double max_buf_len = arguments[4].getNumber();
+
+  return facebook::jsi::Value(
+      sodium_pad(reinterpret_cast<size_t *>(padded_buf_len_p), buf,
+                 unpadded_buf_len, block_size, max_buf_len));
+}
+
+facebook::jsi::Value SodiumUnpad(facebook::jsi::Runtime &runtime,
+                                 const facebook::jsi::Value &,
+                                 const facebook::jsi::Value *arguments,
+                                 size_t) {
+  uint8_t *unpadded_buf_len_p =
+      arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+  uint8_t *buf =
+      arguments[1].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+  const double padded_buflen = arguments[2].getNumber();
+  const double block_size = arguments[3].getNumber();
+
+  return facebook::jsi::Value(
+      sodium_unpad(reinterpret_cast<size_t *>(unpadded_buf_len_p), buf,
+                   padded_buflen, block_size));
+}
+
 facebook::jsi::Value SodiumMemcmp(facebook::jsi::Runtime &runtime,
                                   const facebook::jsi::Value &,
                                   const facebook::jsi::Value *arguments,

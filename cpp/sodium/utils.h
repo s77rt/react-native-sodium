@@ -5,6 +5,14 @@
 namespace s77rt {
 namespace sodiuma {
 
+facebook::jsi::Value SodiumPad(facebook::jsi::Runtime &,
+                               const facebook::jsi::Value &,
+                               const facebook::jsi::Value *, size_t);
+
+facebook::jsi::Value SodiumUnpad(facebook::jsi::Runtime &,
+                                 const facebook::jsi::Value &,
+                                 const facebook::jsi::Value *, size_t);
+
 facebook::jsi::Value SodiumMemcmp(facebook::jsi::Runtime &,
                                   const facebook::jsi::Value &,
                                   const facebook::jsi::Value *, size_t);

@@ -66,6 +66,9 @@ private:
           {"crypto_shorthash", {CryptoShorthash, 4}},
           {"crypto_shorthash_keygen", {CryptoShorthashKeygen, 1}},
 
+          {"sodium_pad", {SodiumPad, 5}},
+          {"sodium_unpad", {SodiumUnpad, 4}},
+
           {"sodium_memcmp", {SodiumMemcmp, 3}},
           {"sodium_bin2hex", {SodiumBin2hex, 4}},
           {"sodium_hex2bin", {SodiumHex2bin, 7}},

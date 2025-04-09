@@ -295,6 +295,61 @@ console.log(
 
 </details>
 
+### Padding
+
+#### Pad
+
+```ts
+sodium_pad(paddedBufLenP: ArrayBuffer, buf: ArrayBuffer, unpaddedBufLen: number, blockSize: number, maxBufLen: number): number;
+```
+
+<details>
+<summary>Example</summary>
+
+```ts
+const paddedBufLenP = new ArrayBuffer(8); // 8 bytes are needed to store a size_t number
+const buf = new ArrayBuffer(64);
+const message = new TextEncoder().encode("Fennec fox");
+new Uint8Array(buf).set(message);
+const unpaddedBufLen = message.byteLength;
+const blockSize = 16;
+sodium.sodium_pad(
+	paddedBufLenP,
+	buf,
+	unpaddedBufLen,
+	blockSize,
+	buf.byteLength
+);
+const paddedBufLen = Number(new DataView(paddedBufLenP).getBigUint64(0, true)); // Safe as long as you are not working with a 9PB data
+console.log("Padded buf:", new Uint8Array(buf.slice(0, paddedBufLen)));
+```
+
+</details>
+
+#### Unpad
+
+```ts
+sodium_unpad(unpaddedBufLenP: ArrayBuffer, buf: ArrayBuffer, paddedBufLen: number, blockSize: number): number;
+```
+
+<details>
+<summary>Example</summary>
+
+```ts
+const unpaddedBufLenP = new ArrayBuffer(8); // 8 bytes are needed to store a size_t number
+const buf = new Uint8Array([
+	70, 101, 110, 110, 101, 99, 32, 102, 111, 120, 128, 0, 0, 0, 0, 0,
+]).buffer;
+const blockSize = 16;
+sodium.sodium_unpad(unpaddedBufLenP, buf, buf.byteLength, blockSize);
+const unpaddedBufLen = Number(
+	new DataView(unpaddedBufLenP).getBigUint64(0, true) // Safe as long as you are not working with a 9PB data
+);
+console.log("Unpadded buf:", new Uint8Array(buf.slice(0, unpaddedBufLen)));
+```
+
+</details>
+
 ### Helpers
 
 #### Constant-time test for equality

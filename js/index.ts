@@ -65,6 +65,20 @@ type Sodium = {
 	) => number;
 	crypto_shorthash_keygen: (k: ArrayBuffer) => void;
 
+	sodium_pad: (
+		paddedBufLenP: ArrayBuffer,
+		buf: ArrayBuffer,
+		unpaddedBufLen: number,
+		blockSize: number,
+		maxBufLen: number
+	) => number;
+	sodium_unpad: (
+		unpaddedBufLenP: ArrayBuffer,
+		buf: ArrayBuffer,
+		paddedBufLen: number,
+		blockSize: number
+	) => number;
+
 	sodium_memcmp: (b1_: ArrayBuffer, b2_: ArrayBuffer, len: number) => number;
 	sodium_bin2hex: (
 		hex: ArrayBuffer,
