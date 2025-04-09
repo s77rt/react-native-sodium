@@ -17,7 +17,20 @@ For detailed documentation checkout [libsodium Documentation](https://doc.libsod
 
 ### Initialization
 
-TODO
+```ts
+sodium_init(): number;
+```
+
+<details>
+<summary>Example</summary>
+
+```ts
+if (sodium.sodium_init() < 0) {
+	throw new Error("Failed to initialize sodium!");
+}
+```
+
+</details>
 
 ### Generating random data
 
@@ -533,6 +546,12 @@ sodium.sodium_stackzero(4);
 **A:** If the input is encoding-dependant an `ArrayBuffer` is used and it's the responsibility of the user to choose the desired encoding. You can use [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder/TextEncoder) to generate an array buffer with UTF-8 encoding. On the other hand if the input is guaranteed to be representable in ASCII then it will be interpreted as ASCII and a `string` is used.
 
 If the input is meant to be written into then an `ArrayBuffer` must be used since `string`s are immutable.
+
+**Q: A function is missing or not implemented**
+
+**A:** This libarry aims to provide a 1:1 libsodium compatibility. Functions are implemented progressively. Feel free to [submit an issue](https://github.com/s77rt/react-native-sodium/issues/new) for prioritization.
+
+PRs are welcome!
 
 ## License
 
