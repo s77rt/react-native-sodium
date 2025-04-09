@@ -1,7 +1,5 @@
 -   Cache functions
 -   Change description (in README, package.json and github) to say more than "cryptography"
--   Update docs and make parameters that can be null
--   Check if crypto_generichash_init key can be null
 -   Should I export sodium_init()?
 -   Update features list
 -   Add in FAQ why there is missing functions

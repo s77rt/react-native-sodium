@@ -121,7 +121,7 @@ randombytes_stir();
 #### Single-part
 
 ```ts
-crypto_generichash(output: ArrayBuffer, outputLen: number, input: ArrayBuffer, inputLen: number, key: ArrayBuffer, keyLen: number): number;
+crypto_generichash(output: ArrayBuffer, outputLen: number, input: ArrayBuffer, inputLen: number, key: ArrayBuffer | null, keyLen: number): number;
 ```
 
 <details>
@@ -165,7 +165,7 @@ console.log(
 #### Multi-part
 
 ```ts
-crypto_generichash_init(state: Record<string, never>, key: ArrayBuffer, keyLen: number, outputLen: number): number;
+crypto_generichash_init(state: Record<string, never>, key: ArrayBuffer | null, keyLen: number, outputLen: number): number;
 crypto_generichash_update(state: Record<string, never>, input: ArrayBuffer, inputLen: number): number;
 crypto_generichash_final(state: Record<string, never>, output: ArrayBuffer, outputLen: number): number;
 ```

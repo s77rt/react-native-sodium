@@ -37,7 +37,10 @@ CryptoGenerichashInit(facebook::jsi::Runtime &runtime,
   facebook::jsi::Object state = arguments[0].getObject(runtime);
   state.setNativeState(runtime, std::make_shared<CryptoGenerichashState>());
   uint8_t *key =
-      arguments[1].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+      arguments[1].isNull()
+          ? NULL
+          : arguments[1].getObject(runtime).getArrayBuffer(runtime).data(
+                runtime);
   const double key_len = arguments[2].getNumber();
   const double out_len = arguments[3].getNumber();
 

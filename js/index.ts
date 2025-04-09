@@ -36,12 +36,12 @@ type Sodium = {
 		outputLen: number,
 		input: ArrayBuffer,
 		inputLen: number,
-		key: ArrayBuffer,
+		key: ArrayBuffer | null,
 		keyLen: number
 	) => number;
 	crypto_generichash_init: (
 		state: Record<string, never>,
-		key: ArrayBuffer,
+		key: ArrayBuffer | null,
 		keyLen: number,
 		outputLen: number
 	) => number;
