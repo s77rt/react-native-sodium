@@ -1,0 +1,71 @@
+buildscript {
+  ext.safeExtGet = {prop, fallback ->
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+  }
+  repositories {
+    google()
+    gradlePluginPortal()
+  }
+  dependencies {
+    classpath("com.android.tools.build:gradle:7.3.1")
+    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.22")
+  }
+}
+
+// Based on https://github.com/software-mansion/react-native-reanimated/blob/23578ac8ae134f93c4f59997eac5ebd980a0ce88/packages/react-native-reanimated/android/build.gradle#L23C1-L38C2
+def REACT_NATIVE_DIR = {
+    def appProject = rootProject.allprojects.find { it.plugins.hasPlugin('com.android.application') }
+
+    def reactNativeLocation = appProject?.ext?.has("REACT_NATIVE_NODE_MODULES_DIR") ? appProject.ext.get("REACT_NATIVE_NODE_MODULES_DIR") : null
+    if (reactNativeLocation != null) {
+        return file(reactNativeLocation)
+    }
+
+    // Fallback to node resolver for custom directory structures like monorepos.
+    def reactNativePackage = file(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim())
+    if (reactNativePackage.exists()) {
+        return reactNativePackage.parentFile
+    }
+
+    throw new GradleException(
+        "Unable to resolve react-native location in node_modules. You should set project extension property (in `app/build.gradle`) named `REACT_NATIVE_NODE_MODULES_DIR` with the path to react-native in node_modules."
+    )
+}.call()
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.facebook.react'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+  compileSdkVersion safeExtGet('compileSdkVersion', 33)
+  namespace "com.s77rt.rtnsodium"
+
+  buildFeatures {
+    prefab true
+  }
+
+  defaultConfig {
+    minSdkVersion safeExtGet('minSdkVersion', 21)
+  
+    externalNativeBuild {
+      cmake {
+        arguments "-DANDROID_STL=c++_shared", "-DREACT_NATIVE_DIR=${REACT_NATIVE_DIR}"
+      }
+    }
+  }
+
+  externalNativeBuild {
+    cmake {
+      path "src/main/jni/CMakeLists.txt"
+    }
+  }
+}
+
+repositories {
+  mavenCentral()
+  google()
+}
+
+dependencies {
+  implementation 'com.facebook.react:react-native'
+}
