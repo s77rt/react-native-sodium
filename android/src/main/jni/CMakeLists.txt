@@ -3,6 +3,7 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 
 project(rtnsodium-jni)
 
+find_package(sodium REQUIRED CONFIG)
 find_package(ReactAndroid REQUIRED CONFIG)
 find_package(fbjni REQUIRED CONFIG)
 
@@ -25,6 +26,7 @@ target_include_directories(rtnsodium-jni PRIVATE
     "${REACT_NATIVE_DIR}/ReactAndroid/src/main/jni/react/turbomodule")
 
 target_link_libraries(rtnsodium-jni
+        sodium::sodium-static
         fbjni::fbjni
         ReactAndroid::jsi
         ReactAndroid::reactnative)
