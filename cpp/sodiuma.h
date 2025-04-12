@@ -22,8 +22,8 @@ public:
   getPropertyNames(facebook::jsi::Runtime &rt) override;
 
 private:
-  static inline const std::map<std::string,
-                               std::variant<size_t, int, std::string>>
+  static inline const std::map<
+      std::string, std::variant<unsigned long long, int, std::string>>
       property_constants_{
           {"randombytes_BYTES_MAX", randombytes_BYTES_MAX},
           {"randombytes_SEEDBYTES", randombytes_SEEDBYTES},

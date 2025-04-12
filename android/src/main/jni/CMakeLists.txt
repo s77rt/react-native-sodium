@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 set(CMAKE_VERBOSE_MAKEFILE on)
+set(CMAKE_CXX_STANDARD 20)
 
 project(rtnsodium-jni)
 
@@ -10,7 +11,7 @@ find_package(fbjni REQUIRED CONFIG)
 add_compile_options(
         -fexceptions
         -frtti
-        -std=c++20)
+        -std=c++${CMAKE_CXX_STANDARD})
 
 file(GLOB JNI_CPP_FILES CONFIGURE_DEPENDS rtnsodium/*.cpp)
 file(GLOB_RECURSE COMMON_CPP_FILES CONFIGURE_DEPENDS ../../../../cpp/*.cpp)

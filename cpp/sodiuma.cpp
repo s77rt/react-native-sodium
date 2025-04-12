@@ -10,7 +10,7 @@ facebook::jsi::Value Sodiuma::get(facebook::jsi::Runtime &runtime,
   if (auto property_constant = property_constants_.find(property_name);
       property_constant != property_constants_.end()) {
     switch (property_constant->second.index()) {
-    case 0: // size_t
+    case 0: // unsigned long long
       return facebook::jsi::Value(
           static_cast<double>(std::get<0>(property_constant->second)));
     case 1: // int
