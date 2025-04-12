@@ -1,3 +1,5 @@
+![logo](assets/logo.png)
+
 A fast cryptography module for React Native using libsodium.
 
 ## Features
