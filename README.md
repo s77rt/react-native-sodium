@@ -1,5 +1,5 @@
 <div align="center">
-	<img alt="logo" src="https://raw.githubusercontent.com/s77rt/react-native-sodium/main/assets/logo.png" />
+	<img alt="logo" src="https://raw.githubusercontent.com/s77rt/react-native-sodium/refs/heads/main/assets/logo.png" />
 </div>
 
 ---
