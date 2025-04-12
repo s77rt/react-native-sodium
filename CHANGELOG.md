@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
--   Missing libsodium build files [#1](https://github.com/s77rt/react-native-sodium/issues/1).
+-   Missing libsodium build files ([#1](https://github.com/s77rt/react-native-sodium/issues/1)).
 
 ## [0.1.1] - 2025-04-12
 
