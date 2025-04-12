@@ -1,2 +1,0 @@
--   Change description (in README, package.json and github) to say more than "cryptography"
--   Update features list

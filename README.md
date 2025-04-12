@@ -1,11 +1,10 @@
-![logo](assets/logo.png)
+<div align="center">
+	<img alt="logo" src="https://raw.githubusercontent.com/s77rt/react-native-sodium/main/assets/logo.png" />
+</div>
 
-A fast cryptography module for React Native using libsodium.
+---
 
-## Features
-
--   JSI
--   1:1 API compatibility with libsodium
+@s77rt/react-native-sodium is a high-performance cryptography library written in C++ that uses the JavaScript Interface (JSI) to provide access to the Sodium API. [Sodium](https://github.com/jedisct1/libsodium) is a modern, easy-to-use library for encryption, decryption, signatures, password hashing, and more.
 
 ## Installation
 
