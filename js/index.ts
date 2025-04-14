@@ -39,6 +39,11 @@ type Sodium = {
 	crypto_sign_MESSAGEBYTES_MAX: number;
 	crypto_sign_PRIMITIVE: string;
 
+	sodium_base64_VARIANT_ORIGINAL: number;
+	sodium_base64_VARIANT_ORIGINAL_NO_PADDING: number;
+	sodium_base64_VARIANT_URLSAFE: number;
+	sodium_base64_VARIANT_URLSAFE_NO_PADDING: number;
+
 	sodium_init: () => number;
 
 	randombytes_random: () => number;
@@ -243,6 +248,15 @@ const sodium: Sodium = {
 	crypto_sign_MESSAGEBYTES_MAX:
 		globalThis.__s77rt__sodiuma.crypto_sign_MESSAGEBYTES_MAX,
 	crypto_sign_PRIMITIVE: globalThis.__s77rt__sodiuma.crypto_sign_PRIMITIVE,
+
+	sodium_base64_VARIANT_ORIGINAL:
+		globalThis.__s77rt__sodiuma.sodium_base64_VARIANT_ORIGINAL,
+	sodium_base64_VARIANT_ORIGINAL_NO_PADDING:
+		globalThis.__s77rt__sodiuma.sodium_base64_VARIANT_ORIGINAL_NO_PADDING,
+	sodium_base64_VARIANT_URLSAFE:
+		globalThis.__s77rt__sodiuma.sodium_base64_VARIANT_URLSAFE,
+	sodium_base64_VARIANT_URLSAFE_NO_PADDING:
+		globalThis.__s77rt__sodiuma.sodium_base64_VARIANT_URLSAFE_NO_PADDING,
 
 	sodium_init: globalThis.__s77rt__sodiuma.sodium_init,
 
