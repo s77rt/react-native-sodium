@@ -129,6 +129,42 @@ randombytes_stir();
 
 ### Public-key cryptography
 
+#### Authenticated encryption
+
+```ts
+crypto_box_keypair(pk: ArrayBuffer, sk: ArrayBuffer): number;
+crypto_box_easy(c: ArrayBuffer, m: ArrayBuffer, mLen: number, n: ArrayBuffer, pk: ArrayBuffer, sk: ArrayBuffer): number;
+crypto_box_open_easy(m: ArrayBuffer, c: ArrayBuffer, cLen: number, n: ArrayBuffer, pk: ArrayBuffer, sk: ArrayBuffer): number;
+```
+
+<details>
+<summary>Example</summary>
+
+```ts
+const alicePK = new ArrayBuffer(sodium.crypto_box_PUBLICKEYBYTES);
+const aliceSK = new ArrayBuffer(sodium.crypto_box_SECRETKEYBYTES);
+const bobPK = new ArrayBuffer(sodium.crypto_box_PUBLICKEYBYTES);
+const bobSK = new ArrayBuffer(sodium.crypto_box_SECRETKEYBYTES);
+const nonce = new ArrayBuffer(sodium.crypto_box_NONCEBYTES);
+const message = new TextEncoder().encode("Fennec fox").buffer;
+const messageL = message.byteLength;
+const cipherL = sodium.crypto_box_MACBYTES + messageL;
+const cipher = new ArrayBuffer(cipherL);
+const decrypted = new ArrayBuffer(messageL);
+sodium.crypto_box_keypair(alicePK, aliceSK);
+sodium.crypto_box_keypair(bobPK, bobSK);
+sodium.randombytes_buf(nonce, nonce.byteLength);
+sodium.crypto_box_easy(cipher, message, messageL, nonce, bobPK, aliceSK);
+sodium.crypto_box_open_easy(decrypted, cipher, cipherL, nonce, alicePK, bobSK);
+console.log("Message:", new Uint8Array(message));
+console.log("Cipher:", new Uint8Array(cipher));
+console.log("Decrypted:", new Uint8Array(message));
+```
+
+</details>
+
+#### Sealed boxes
+
 TODO
 
 ### Hashing
