@@ -127,9 +127,11 @@ randombytes_stir();
 
 </details>
 
-### Generic hashing
+#### Hashing
 
-#### Single-part
+#### Generic hashing
+
+##### Single-part
 
 ```ts
 crypto_generichash(output: ArrayBuffer, outputLen: number, input: ArrayBuffer, inputLen: number, key: ArrayBuffer | null, keyLen: number): number;
@@ -173,7 +175,7 @@ console.log(
 
 </details>
 
-#### Multi-part
+##### Multi-part
 
 ```ts
 crypto_generichash_init(state: Record<string, never>, key: ArrayBuffer | null, keyLen: number, outputLen: number): number;
@@ -217,7 +219,7 @@ console.log(
 
 </details>
 
-#### Keygen
+##### Keygen
 
 ```ts
 crypto_generichash_keygen(k: ArrayBuffer): void;
@@ -242,9 +244,9 @@ console.log(
 
 </details>
 
-### Short-input hashing
+#### Short-input hashing
 
-#### Short hash
+##### Short hash
 
 ```ts
 crypto_shorthash(output: ArrayBuffer, input: ArrayBuffer, inputLen: number, k: ArrayBuffer): number;
@@ -281,7 +283,7 @@ console.log(
 
 </details>
 
-#### Keygen
+##### Keygen
 
 ```ts
 crypto_shorthash_keygen(k: ArrayBuffer): void;
