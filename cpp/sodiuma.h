@@ -3,6 +3,7 @@
 #include "crypto_box/crypto_box.h"
 #include "crypto_generichash/crypto_generichash.h"
 #include "crypto_shorthash/crypto_shorthash.h"
+#include "crypto_sign/crypto_sign.h"
 #include "randombytes/randombytes.h"
 #include "sodium/core.h"
 #include "sodium/utils.h"
@@ -53,6 +54,13 @@ private:
           {"crypto_box_ZEROBYTES", crypto_box_ZEROBYTES},
           {"crypto_box_BOXZEROBYTES", crypto_box_BOXZEROBYTES},
 
+          {"crypto_sign_BYTES", crypto_sign_BYTES},
+          {"crypto_sign_SEEDBYTES", crypto_sign_SEEDBYTES},
+          {"crypto_sign_PUBLICKEYBYTES", crypto_sign_PUBLICKEYBYTES},
+          {"crypto_sign_SECRETKEYBYTES", crypto_sign_SECRETKEYBYTES},
+          {"crypto_sign_MESSAGEBYTES_MAX", crypto_sign_MESSAGEBYTES_MAX},
+          {"crypto_sign_PRIMITIVE", crypto_sign_PRIMITIVE},
+
           {"sodium_base64_VARIANT_ORIGINAL", sodium_base64_VARIANT_ORIGINAL},
           {"sodium_base64_VARIANT_ORIGINAL_NO_PADDING",
            sodium_base64_VARIANT_ORIGINAL_NO_PADDING},
@@ -90,6 +98,10 @@ private:
           {"crypto_box_open_easy", {CryptoBoxOpenEasy, 6}},
           {"crypto_box_seal", {CryptoBoxSeal, 4}},
           {"crypto_box_seal_open", {CryptoBoxSealOpen, 5}},
+
+          {"crypto_sign_keypair", {CryptoSignKeypair, 2}},
+          {"crypto_sign", {CryptoSign, 5}},
+          {"crypto_sign_open", {CryptoSignOpen, 5}},
 
           {"sodium_memcmp", {SodiumMemcmp, 3}},
           {"sodium_bin2hex", {SodiumBin2hex, 4}},

@@ -191,6 +191,10 @@ console.log("Decrypted:", new Uint8Array(decrypted));
 
 </details>
 
+#### Public-key signatures
+
+TODO
+
 ### Hashing
 
 #### Generic hashing
