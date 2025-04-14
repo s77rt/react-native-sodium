@@ -20,6 +20,18 @@ type Sodium = {
 	crypto_shorthash_KEYBYTES: number;
 	crypto_shorthash_PRIMITIVE: string;
 
+	crypto_box_seedbytes: number;
+	crypto_box_publickeybytes: number;
+	crypto_box_secretkeybytes: number;
+	crypto_box_noncebytes: number;
+	crypto_box_macbytes: number;
+	crypto_box_messagebytes_max: number;
+	crypto_box_primitive: string;
+	crypto_box_beforenmbytes: number;
+	crypto_box_sealbytes: number;
+	crypto_box_zerobytes: number;
+	crypto_box_boxzerobytes: number;
+
 	sodium_init: () => number;
 
 	randombytes_random: () => number;
@@ -79,6 +91,37 @@ type Sodium = {
 		buf: ArrayBuffer,
 		paddedBufLen: number,
 		blockSize: number
+	) => number;
+
+	crypto_box_keypair: (pk: ArrayBuffer, sk: ArrayBuffer) => number;
+	crypto_box_easy: (
+		c: ArrayBuffer,
+		m: ArrayBuffer,
+		mLen: number,
+		n: ArrayBuffer,
+		pk: ArrayBuffer,
+		sk: ArrayBuffer
+	) => number;
+	crypto_box_open_easy: (
+		m: ArrayBuffer,
+		c: ArrayBuffer,
+		cLen: number,
+		n: ArrayBuffer,
+		pk: ArrayBuffer,
+		sk: ArrayBuffer
+	) => number;
+	crypto_box_seal: (
+		c: ArrayBuffer,
+		m: ArrayBuffer,
+		mLen: number,
+		pk: ArrayBuffer
+	) => number;
+	crypto_box_seal_open: (
+		m: ArrayBuffer,
+		c: ArrayBuffer,
+		cLen: number,
+		pk: ArrayBuffer,
+		sk: ArrayBuffer
 	) => number;
 
 	sodium_memcmp: (b1_: ArrayBuffer, b2_: ArrayBuffer, len: number) => number;
@@ -151,6 +194,23 @@ const sodium: Sodium = {
 	crypto_shorthash_PRIMITIVE:
 		globalThis.__s77rt__sodiuma.crypto_shorthash_PRIMITIVE,
 
+	crypto_box_seedbytes: globalThis.__s77rt__sodiuma.crypto_box_seedbytes,
+	crypto_box_publickeybytes:
+		globalThis.__s77rt__sodiuma.crypto_box_publickeybytes,
+	crypto_box_secretkeybytes:
+		globalThis.__s77rt__sodiuma.crypto_box_secretkeybytes,
+	crypto_box_noncebytes: globalThis.__s77rt__sodiuma.crypto_box_noncebytes,
+	crypto_box_macbytes: globalThis.__s77rt__sodiuma.crypto_box_macbytes,
+	crypto_box_messagebytes_max:
+		globalThis.__s77rt__sodiuma.crypto_box_messagebytes_max,
+	crypto_box_primitive: globalThis.__s77rt__sodiuma.crypto_box_primitive,
+	crypto_box_beforenmbytes:
+		globalThis.__s77rt__sodiuma.crypto_box_beforenmbytes,
+	crypto_box_sealbytes: globalThis.__s77rt__sodiuma.crypto_box_sealbytes,
+	crypto_box_zerobytes: globalThis.__s77rt__sodiuma.crypto_box_zerobytes,
+	crypto_box_boxzerobytes:
+		globalThis.__s77rt__sodiuma.crypto_box_boxzerobytes,
+
 	sodium_init: globalThis.__s77rt__sodiuma.sodium_init,
 
 	randombytes_random: globalThis.__s77rt__sodiuma.randombytes_random,
@@ -177,6 +237,12 @@ const sodium: Sodium = {
 
 	sodium_pad: globalThis.__s77rt__sodiuma.sodium_pad,
 	sodium_unpad: globalThis.__s77rt__sodiuma.sodium_unpad,
+
+	crypto_box_keypair: globalThis.__s77rt__sodiuma.crypto_box_keypair,
+	crypto_box_easy: globalThis.__s77rt__sodiuma.crypto_box_easy,
+	crypto_box_open_easy: globalThis.__s77rt__sodiuma.crypto_box_open_easy,
+	crypto_box_seal: globalThis.__s77rt__sodiuma.crypto_box_seal,
+	crypto_box_seal_open: globalThis.__s77rt__sodiuma.crypto_box_seal_open,
 
 	sodium_memcmp: globalThis.__s77rt__sodiuma.sodium_memcmp,
 	sodium_bin2hex: globalThis.__s77rt__sodiuma.sodium_bin2hex,
