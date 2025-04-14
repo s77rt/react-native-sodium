@@ -20,17 +20,17 @@ type Sodium = {
 	crypto_shorthash_KEYBYTES: number;
 	crypto_shorthash_PRIMITIVE: string;
 
-	crypto_box_seedbytes: number;
-	crypto_box_publickeybytes: number;
-	crypto_box_secretkeybytes: number;
-	crypto_box_noncebytes: number;
-	crypto_box_macbytes: number;
-	crypto_box_messagebytes_max: number;
-	crypto_box_primitive: string;
-	crypto_box_beforenmbytes: number;
-	crypto_box_sealbytes: number;
-	crypto_box_zerobytes: number;
-	crypto_box_boxzerobytes: number;
+	crypto_box_SEEDBYTES: number;
+	crypto_box_PUBLICKEYBYTES: number;
+	crypto_box_SECRETKEYBYTES: number;
+	crypto_box_NONCEBYTES: number;
+	crypto_box_MACBYTES: number;
+	crypto_box_MESSAGEBYTES_MAX: number;
+	crypto_box_PRIMITIVE: string;
+	crypto_box_BEFORENMBYTES: number;
+	crypto_box_SEALBYTES: number;
+	crypto_box_ZEROBYTES: number;
+	crypto_box_BOXZEROBYTES: number;
 
 	sodium_init: () => number;
 
@@ -194,22 +194,22 @@ const sodium: Sodium = {
 	crypto_shorthash_PRIMITIVE:
 		globalThis.__s77rt__sodiuma.crypto_shorthash_PRIMITIVE,
 
-	crypto_box_seedbytes: globalThis.__s77rt__sodiuma.crypto_box_seedbytes,
-	crypto_box_publickeybytes:
-		globalThis.__s77rt__sodiuma.crypto_box_publickeybytes,
-	crypto_box_secretkeybytes:
-		globalThis.__s77rt__sodiuma.crypto_box_secretkeybytes,
-	crypto_box_noncebytes: globalThis.__s77rt__sodiuma.crypto_box_noncebytes,
-	crypto_box_macbytes: globalThis.__s77rt__sodiuma.crypto_box_macbytes,
-	crypto_box_messagebytes_max:
-		globalThis.__s77rt__sodiuma.crypto_box_messagebytes_max,
-	crypto_box_primitive: globalThis.__s77rt__sodiuma.crypto_box_primitive,
-	crypto_box_beforenmbytes:
-		globalThis.__s77rt__sodiuma.crypto_box_beforenmbytes,
-	crypto_box_sealbytes: globalThis.__s77rt__sodiuma.crypto_box_sealbytes,
-	crypto_box_zerobytes: globalThis.__s77rt__sodiuma.crypto_box_zerobytes,
-	crypto_box_boxzerobytes:
-		globalThis.__s77rt__sodiuma.crypto_box_boxzerobytes,
+	crypto_box_SEEDBYTES: globalThis.__s77rt__sodiuma.crypto_box_SEEDBYTES,
+	crypto_box_PUBLICKEYBYTES:
+		globalThis.__s77rt__sodiuma.crypto_box_PUBLICKEYBYTES,
+	crypto_box_SECRETKEYBYTES:
+		globalThis.__s77rt__sodiuma.crypto_box_SECRETKEYBYTES,
+	crypto_box_NONCEBYTES: globalThis.__s77rt__sodiuma.crypto_box_NONCEBYTES,
+	crypto_box_MACBYTES: globalThis.__s77rt__sodiuma.crypto_box_MACBYTES,
+	crypto_box_MESSAGEBYTES_MAX:
+		globalThis.__s77rt__sodiuma.crypto_box_MESSAGEBYTES_MAX,
+	crypto_box_PRIMITIVE: globalThis.__s77rt__sodiuma.crypto_box_PRIMITIVE,
+	crypto_box_BEFORENMBYTES:
+		globalThis.__s77rt__sodiuma.crypto_box_BEFORENMBYTES,
+	crypto_box_SEALBYTES: globalThis.__s77rt__sodiuma.crypto_box_SEALBYTES,
+	crypto_box_ZEROBYTES: globalThis.__s77rt__sodiuma.crypto_box_ZEROBYTES,
+	crypto_box_BOXZEROBYTES:
+		globalThis.__s77rt__sodiuma.crypto_box_BOXZEROBYTES,
 
 	sodium_init: globalThis.__s77rt__sodiuma.sodium_init,
 
