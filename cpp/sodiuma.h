@@ -1,5 +1,6 @@
 #pragma once
 
+#include "crypto_box/crypto_box.h"
 #include "crypto_generichash/crypto_generichash.h"
 #include "crypto_shorthash/crypto_shorthash.h"
 #include "randombytes/randombytes.h"
@@ -40,6 +41,18 @@ private:
           {"crypto_shorthash_KEYBYTES", crypto_shorthash_KEYBYTES},
           {"crypto_shorthash_PRIMITIVE", crypto_shorthash_PRIMITIVE},
 
+          {"crypto_box_seedbytes", crypto_box_SEEDBYTES},
+          {"crypto_box_publickeybytes", crypto_box_PUBLICKEYBYTES},
+          {"crypto_box_secretkeybytes", crypto_box_SECRETKEYBYTES},
+          {"crypto_box_noncebytes", crypto_box_NONCEBYTES},
+          {"crypto_box_macbytes", crypto_box_MACBYTES},
+          {"crypto_box_messagebytes_max", crypto_box_MESSAGEBYTES_MAX},
+          {"crypto_box_primitive", crypto_box_PRIMITIVE},
+          {"crypto_box_beforenmbytes", crypto_box_BEFORENMBYTES},
+          {"crypto_box_sealbytes", crypto_box_SEALBYTES},
+          {"crypto_box_zerobytes", crypto_box_ZEROBYTES},
+          {"crypto_box_boxzerobytes", crypto_box_BOXZEROBYTES},
+
           {"sodium_base64_VARIANT_ORIGINAL", sodium_base64_VARIANT_ORIGINAL},
           {"sodium_base64_VARIANT_ORIGINAL_NO_PADDING",
            sodium_base64_VARIANT_ORIGINAL_NO_PADDING},
@@ -71,6 +84,12 @@ private:
 
           {"sodium_pad", {SodiumPad, 5}},
           {"sodium_unpad", {SodiumUnpad, 4}},
+
+          {"crypto_box_keypair", {CryptoBoxKeypair, 2}},
+          {"crypto_box_easy", {CryptoBoxEasy, 6}},
+          {"crypto_box_open_easy", {CryptoBoxOpenEasy, 6}},
+          {"crypto_box_seal", {CryptoBoxSeal, 4}},
+          {"crypto_box_seal_open", {CryptoBoxSealOpen, 5}},
 
           {"sodium_memcmp", {SodiumMemcmp, 3}},
           {"sodium_bin2hex", {SodiumBin2hex, 4}},
