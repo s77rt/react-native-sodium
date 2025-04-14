@@ -32,6 +32,13 @@ type Sodium = {
 	crypto_box_ZEROBYTES: number;
 	crypto_box_BOXZEROBYTES: number;
 
+	crypto_sign_BYTES: number;
+	crypto_sign_SEEDBYTES: number;
+	crypto_sign_PUBLICKEYBYTES: number;
+	crypto_sign_SECRETKEYBYTES: number;
+	crypto_sign_MESSAGEBYTES_MAX: number;
+	crypto_sign_PRIMITIVE: string;
+
 	sodium_init: () => number;
 
 	randombytes_random: () => number;
@@ -124,6 +131,22 @@ type Sodium = {
 		sk: ArrayBuffer
 	) => number;
 
+	crypto_sign_keypair: (pk: ArrayBuffer, sk: ArrayBuffer) => number;
+	crypto_sign: (
+		sm: ArrayBuffer,
+		smLenP: ArrayBuffer | null,
+		m: ArrayBuffer,
+		mLen: number,
+		sk: ArrayBuffer
+	) => number;
+	crypto_sign_open: (
+		m: ArrayBuffer,
+		mLenP: ArrayBuffer | null,
+		sm: ArrayBuffer,
+		smLen: number,
+		pk: ArrayBuffer
+	) => number;
+
 	sodium_memcmp: (b1_: ArrayBuffer, b2_: ArrayBuffer, len: number) => number;
 	sodium_bin2hex: (
 		hex: ArrayBuffer,
@@ -211,6 +234,16 @@ const sodium: Sodium = {
 	crypto_box_BOXZEROBYTES:
 		globalThis.__s77rt__sodiuma.crypto_box_BOXZEROBYTES,
 
+	crypto_sign_BYTES: globalThis.__s77rt__sodiuma.crypto_sign_BYTES,
+	crypto_sign_SEEDBYTES: globalThis.__s77rt__sodiuma.crypto_sign_SEEDBYTES,
+	crypto_sign_PUBLICKEYBYTES:
+		globalThis.__s77rt__sodiuma.crypto_sign_PUBLICKEYBYTES,
+	crypto_sign_SECRETKEYBYTES:
+		globalThis.__s77rt__sodiuma.crypto_sign_SECRETKEYBYTES,
+	crypto_sign_MESSAGEBYTES_MAX:
+		globalThis.__s77rt__sodiuma.crypto_sign_MESSAGEBYTES_MAX,
+	crypto_sign_PRIMITIVE: globalThis.__s77rt__sodiuma.crypto_sign_PRIMITIVE,
+
 	sodium_init: globalThis.__s77rt__sodiuma.sodium_init,
 
 	randombytes_random: globalThis.__s77rt__sodiuma.randombytes_random,
@@ -243,6 +276,10 @@ const sodium: Sodium = {
 	crypto_box_open_easy: globalThis.__s77rt__sodiuma.crypto_box_open_easy,
 	crypto_box_seal: globalThis.__s77rt__sodiuma.crypto_box_seal,
 	crypto_box_seal_open: globalThis.__s77rt__sodiuma.crypto_box_seal_open,
+
+	crypto_sign_keypair: globalThis.__s77rt__sodiuma.crypto_sign_keypair,
+	crypto_sign: globalThis.__s77rt__sodiuma.crypto_sign,
+	crypto_sign_open: globalThis.__s77rt__sodiuma.crypto_sign_open,
 
 	sodium_memcmp: globalThis.__s77rt__sodiuma.sodium_memcmp,
 	sodium_bin2hex: globalThis.__s77rt__sodiuma.sodium_bin2hex,
