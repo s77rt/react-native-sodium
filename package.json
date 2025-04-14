@@ -20,7 +20,8 @@
 		"!**/__mocks__"
 	],
 	"scripts": {
-		"prepare": "./scripts/prepare.sh"
+		"prepack": "./scripts/prepack.sh",
+		"postpack": "./scripts/postpack.sh"
 	},
 	"keywords": [
 		"react-native",
