@@ -127,7 +127,7 @@ randombytes_stir();
 
 </details>
 
-#### Hashing
+### Hashing
 
 #### Generic hashing
 
