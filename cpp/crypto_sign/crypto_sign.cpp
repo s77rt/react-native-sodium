@@ -42,7 +42,10 @@ facebook::jsi::Value CryptoSignOpen(facebook::jsi::Runtime &runtime,
                                     const facebook::jsi::Value *arguments,
                                     size_t) {
   uint8_t *m =
-      arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+      arguments[0].isNull()
+          ? NULL
+          : arguments[0].getObject(runtime).getArrayBuffer(runtime).data(
+                runtime);
   uint8_t *m_len_p =
       arguments[1].isNull()
           ? NULL

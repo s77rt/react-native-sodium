@@ -140,7 +140,7 @@ type Sodium = {
 		sk: ArrayBuffer
 	) => number;
 	crypto_sign_open: (
-		m: ArrayBuffer,
+		m: ArrayBuffer | null,
 		mLenP: ArrayBuffer | null,
 		sm: ArrayBuffer,
 		smLen: number,
