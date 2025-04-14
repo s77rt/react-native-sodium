@@ -158,14 +158,38 @@ sodium.crypto_box_easy(cipher, message, messageL, nonce, bobPK, aliceSK);
 sodium.crypto_box_open_easy(decrypted, cipher, cipherL, nonce, alicePK, bobSK);
 console.log("Message:", new Uint8Array(message));
 console.log("Cipher:", new Uint8Array(cipher));
-console.log("Decrypted:", new Uint8Array(message));
+console.log("Decrypted:", new Uint8Array(decrypted));
 ```
 
 </details>
 
 #### Sealed boxes
 
-TODO
+```ts
+crypto_box_seal(c: ArrayBuffer, m: ArrayBuffer, mLen: number, pk: ArrayBuffer): number;
+crypto_box_seal_open(m: ArrayBuffer, c: ArrayBuffer, cLen: number, pk: ArrayBuffer, sk: ArrayBuffer): number;
+```
+
+<details>
+<summary>Example</summary>
+
+```ts
+const bobPK = new ArrayBuffer(sodium.crypto_box_PUBLICKEYBYTES);
+const bobSK = new ArrayBuffer(sodium.crypto_box_SECRETKEYBYTES);
+const message = new TextEncoder().encode("Fennec fox").buffer;
+const messageL = message.byteLength;
+const cipherL = sodium.crypto_box_SEALBYTES + messageL;
+const cipher = new ArrayBuffer(cipherL);
+const decrypted = new ArrayBuffer(messageL);
+sodium.crypto_box_keypair(bobPK, bobSK);
+sodium.crypto_box_seal(cipher, message, messageL, bobPK);
+sodium.crypto_box_seal_open(decrypted, cipher, cipherL, bobPK, bobSK);
+console.log("Message:", new Uint8Array(message));
+console.log("Cipher:", new Uint8Array(cipher));
+console.log("Decrypted:", new Uint8Array(decrypted));
+```
+
+</details>
 
 ### Hashing
 
