@@ -193,7 +193,34 @@ console.log("Decrypted:", new Uint8Array(decrypted));
 
 #### Public-key signatures
 
-TODO
+```ts
+crypto_sign_keypair(pk: ArrayBuffer, sk: ArrayBuffer): number;
+crypto_sign(sm: ArrayBuffer, smLenP: ArrayBuffer | null, m: ArrayBuffer, mLen: number, sk: ArrayBuffer): number;
+crypto_sign_open(m: ArrayBuffer, mLenP: ArrayBuffer | null, sm: ArrayBuffer, smLen: number, pk: ArrayBuffer): number;
+```
+
+<details>
+<summary>Example</summary>
+
+```ts
+const bobPK = new ArrayBuffer(sodium.crypto_sign_PUBLICKEYBYTES);
+const bobSK = new ArrayBuffer(sodium.crypto_sign_SECRETKEYBYTES);
+const message = new TextEncoder().encode("I saw a fennec fox").buffer;
+const messageL = message.byteLength;
+const signedL = sodium.crypto_sign_BYTES + messageL;
+const signed = new ArrayBuffer(signedL);
+sodium.crypto_sign_keypair(bobPK, bobSK);
+if (sodium.crypto_sign(signed, null, message, messageL, bobSK) !== 0) {
+	throw new Error("Failed to sign the message!");
+}
+if (sodium.crypto_sign_open(null, null, signed, signedL, bobPK) !== 0) {
+	throw new Error("Invalid signature!");
+}
+console.log("Message:", new Uint8Array(message));
+console.log("Signed:", new Uint8Array(signed));
+```
+
+</details>
 
 ### Hashing
 
