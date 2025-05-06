@@ -94,12 +94,14 @@ private:
           {"sodium_unpad", {SodiumUnpad, 4}},
 
           {"crypto_box_keypair", {CryptoBoxKeypair, 2}},
+          {"crypto_box_seed_keypair", {CryptoBoxSeedKeypair, 3}},
           {"crypto_box_easy", {CryptoBoxEasy, 6}},
           {"crypto_box_open_easy", {CryptoBoxOpenEasy, 6}},
           {"crypto_box_seal", {CryptoBoxSeal, 4}},
           {"crypto_box_seal_open", {CryptoBoxSealOpen, 5}},
 
           {"crypto_sign_keypair", {CryptoSignKeypair, 2}},
+          {"crypto_sign_seed_keypair", {CryptoSignSeedKeypair, 3}},
           {"crypto_sign", {CryptoSign, 5}},
           {"crypto_sign_open", {CryptoSignOpen, 5}},
 
