@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2025-05-06
+
+### Added
+
+-   `crypto_box_seed_keypair` and `crypto_sign_seed_keypair` ([#4](https://github.com/s77rt/react-native-sodium/pull/4)).
+
 ## [0.2.0] - 2025-04-14
 
 ### Added
@@ -30,6 +36,7 @@ All notable changes to this project will be documented in this file.
 
 -   Initial release.
 
+[0.2.1]: https://github.com/s77rt/react-native-sodium/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/s77rt/react-native-sodium/compare/v0.1.2...v0.2.0
 [0.1.2]: https://github.com/s77rt/react-native-sodium/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/s77rt/react-native-sodium/compare/v0.1.0...v0.1.1
