@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.source_files    = ["ios/**/*.{h,m,mm,swift}"]
 
-  s.prepare_command = "cd libsodium && ./dist-build/apple-xcframework.sh"
+  s.prepare_command = "cd libsodium && IOS_VERSION_MIN=#{min_ios_version_supported} ./dist-build/apple-xcframework.sh"
 
   s.subspec 'libsodium' do |sp|
     sp.vendored_frameworks = "libsodium/libsodium-apple/Clibsodium.xcframework"
