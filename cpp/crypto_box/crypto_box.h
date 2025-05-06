@@ -9,6 +9,10 @@ facebook::jsi::Value CryptoBoxKeypair(facebook::jsi::Runtime &,
                                       const facebook::jsi::Value &,
                                       const facebook::jsi::Value *, size_t);
 
+facebook::jsi::Value CryptoBoxSeedKeypair(facebook::jsi::Runtime &,
+                                          const facebook::jsi::Value &,
+                                          const facebook::jsi::Value *, size_t);
+
 facebook::jsi::Value CryptoBoxEasy(facebook::jsi::Runtime &,
                                    const facebook::jsi::Value &,
                                    const facebook::jsi::Value *, size_t);

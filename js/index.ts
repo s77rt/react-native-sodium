@@ -106,6 +106,11 @@ type Sodium = {
 	) => number;
 
 	crypto_box_keypair: (pk: ArrayBuffer, sk: ArrayBuffer) => number;
+	crypto_box_seed_keypair: (
+		pk: ArrayBuffer,
+		sk: ArrayBuffer,
+		seed: ArrayBuffer
+	) => number;
 	crypto_box_easy: (
 		c: ArrayBuffer,
 		m: ArrayBuffer,
@@ -137,6 +142,11 @@ type Sodium = {
 	) => number;
 
 	crypto_sign_keypair: (pk: ArrayBuffer, sk: ArrayBuffer) => number;
+	crypto_sign_seed_keypair: (
+		pk: ArrayBuffer,
+		sk: ArrayBuffer,
+		seed: ArrayBuffer
+	) => number;
 	crypto_sign: (
 		sm: ArrayBuffer,
 		smLenP: ArrayBuffer | null,
@@ -286,12 +296,16 @@ const sodium: Sodium = {
 	sodium_unpad: globalThis.__s77rt__sodiuma.sodium_unpad,
 
 	crypto_box_keypair: globalThis.__s77rt__sodiuma.crypto_box_keypair,
+	crypto_box_seed_keypair:
+		globalThis.__s77rt__sodiuma.crypto_box_seed_keypair,
 	crypto_box_easy: globalThis.__s77rt__sodiuma.crypto_box_easy,
 	crypto_box_open_easy: globalThis.__s77rt__sodiuma.crypto_box_open_easy,
 	crypto_box_seal: globalThis.__s77rt__sodiuma.crypto_box_seal,
 	crypto_box_seal_open: globalThis.__s77rt__sodiuma.crypto_box_seal_open,
 
 	crypto_sign_keypair: globalThis.__s77rt__sodiuma.crypto_sign_keypair,
+	crypto_sign_seed_keypair:
+		globalThis.__s77rt__sodiuma.crypto_sign_seed_keypair,
 	crypto_sign: globalThis.__s77rt__sodiuma.crypto_sign,
 	crypto_sign_open: globalThis.__s77rt__sodiuma.crypto_sign_open,
 

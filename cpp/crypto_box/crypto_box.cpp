@@ -17,6 +17,20 @@ facebook::jsi::Value CryptoBoxKeypair(facebook::jsi::Runtime &runtime,
   return facebook::jsi::Value(crypto_box_keypair(pk, sk));
 }
 
+facebook::jsi::Value CryptoBoxSeedKeypair(facebook::jsi::Runtime &runtime,
+                                          const facebook::jsi::Value &,
+                                          const facebook::jsi::Value *arguments,
+                                          size_t) {
+  uint8_t *pk =
+      arguments[0].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+  uint8_t *sk =
+      arguments[1].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+  uint8_t *seed =
+      arguments[2].getObject(runtime).getArrayBuffer(runtime).data(runtime);
+
+  return facebook::jsi::Value(crypto_box_seed_keypair(pk, sk, seed));
+}
+
 facebook::jsi::Value CryptoBoxEasy(facebook::jsi::Runtime &runtime,
                                    const facebook::jsi::Value &,
                                    const facebook::jsi::Value *arguments,

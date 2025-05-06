@@ -133,6 +133,7 @@ randombytes_stir();
 
 ```ts
 crypto_box_keypair(pk: ArrayBuffer, sk: ArrayBuffer): number;
+crypto_box_seed_keypair(pk: ArrayBuffer, sk: ArrayBuffer, seed: ArrayBuffer): number;
 crypto_box_easy(c: ArrayBuffer, m: ArrayBuffer, mLen: number, n: ArrayBuffer, pk: ArrayBuffer, sk: ArrayBuffer): number;
 crypto_box_open_easy(m: ArrayBuffer, c: ArrayBuffer, cLen: number, n: ArrayBuffer, pk: ArrayBuffer, sk: ArrayBuffer): number;
 ```
@@ -195,6 +196,7 @@ console.log("Decrypted:", new Uint8Array(decrypted));
 
 ```ts
 crypto_sign_keypair(pk: ArrayBuffer, sk: ArrayBuffer): number;
+crypto_sign_seed_keypair(pk: ArrayBuffer, sk: ArrayBuffer, seed: ArrayBuffer): number;
 crypto_sign(sm: ArrayBuffer, smLenP: ArrayBuffer | null, m: ArrayBuffer, mLen: number, sk: ArrayBuffer): number;
 crypto_sign_open(m: ArrayBuffer, mLenP: ArrayBuffer | null, sm: ArrayBuffer, smLen: number, pk: ArrayBuffer): number;
 ```
