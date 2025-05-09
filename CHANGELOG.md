@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2025-05-09
+
+### Changed
+
+-   Ship package with prebuilt libsodium ([#8](https://github.com/s77rt/react-native-sodium/pull/8)).
+
 ## [0.3.0] - 2025-05-06
 
 ### Changed
@@ -42,6 +48,7 @@ All notable changes to this project will be documented in this file.
 
 -   Initial release.
 
+[0.4.0]: https://github.com/s77rt/react-native-sodium/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/s77rt/react-native-sodium/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/s77rt/react-native-sodium/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/s77rt/react-native-sodium/compare/v0.1.2...v0.2.0
