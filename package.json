@@ -6,7 +6,6 @@
 	"source": "js/index",
 	"main": "js/index",
 	"files": [
-		"scripts",
 		"vendor",
 		"cpp",
 		"js",
