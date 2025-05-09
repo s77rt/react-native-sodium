@@ -72,5 +72,5 @@ repositories {
 
 dependencies {
   implementation 'com.facebook.react:react-native'
-  implementation fileTree(dir:Paths.get(VENDOR_DIR, "libsodium"), include:'libsodium-*.aar')
+  implementation fileTree(dir:Paths.get(VENDOR_DIR.toString(), "libsodium"), include:'libsodium-*.aar')
 }
