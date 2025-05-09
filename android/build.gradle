@@ -34,57 +34,7 @@ def REACT_NATIVE_DIR = {
     )
 }.call()
 
-def ANDROID_NDK_HOME = {
-    if (rootProject.hasProperty("ndkPath")) {
-        return rootProject.ext.ndkPath
-    }
-
-    def androidHome = System.getenv("ANDROID_HOME")
-    if (androidHome != null && rootProject.hasProperty("ndkVersion")) {
-        return Paths.get(androidHome, "ndk", rootProject.ext.ndkVersion)
-    }
-
-    throw new GradleException(
-        "Unable to resolve ndk path. You should either set a project extension property (in `build.gradle`) named ndkPath or ndkVersion and set ANDROID_HOME env variable."
-    )
-}.call()
-
-def MIN_SDK_VERSION = {
-    if (rootProject.hasProperty("minSdkVersion")) {
-        return rootProject.ext.minSdkVersion
-    }
-
-    throw new GradleException(
-        "Unable to resolve compile sdk version. You should set a project extension property (in `build.gradle`) named minSdkVersion."
-    )
-}.call()
-
-def LIBSODIUM_SRC = Paths.get(buildscript.sourceFile.getParentFile().getParent(), "libsodium")
-
-def BUILD_LIBSODIUM_AAR = {
-    println "libsodium AAR building..."
-
-    if (fileTree(dir:LIBSODIUM_SRC, include:'libsodium-*.aar').size()) {
-        println "libsodium AAR building skipped (aar file already exists)"
-        return true
-    }
-
-    def libsodiumAAR = "${System.getenv('SHELL')} ./dist-build/android-aar.sh".execute(["ANDROID_NDK_HOME=${ANDROID_NDK_HOME}", "NDK_PLATFORM=android-${MIN_SDK_VERSION}"], file(LIBSODIUM_SRC))
-    def libsodiumAAROut = new StringBuffer()
-    def libsodiumAARErr = new StringBuffer()
-
-    libsodiumAAR.waitForProcessOutput(libsodiumAAROut, libsodiumAARErr)
-
-    if (libsodiumAAR.exitValue() != 0) {
-        throw new GradleException(
-            "libsodium AAR building failed.\nstdout:\n${libsodiumAAROut}\nstderr:\n${libsodiumAARErr}"
-        )
-    }
-
-    println "libsodium AAR building completed!"
-
-    return true
-}.call()
+def VENDOR_DIR = Paths.get(buildscript.sourceFile.getParentFile().getParent(), "vendor")
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.facebook.react'
@@ -122,5 +72,5 @@ repositories {
 
 dependencies {
   implementation 'com.facebook.react:react-native'
-  implementation fileTree(dir:LIBSODIUM_SRC, include:'libsodium-*.aar')
+  implementation fileTree(dir:Paths.get(VENDOR_DIR, "libsodium"), include:'libsodium-*.aar')
 }
