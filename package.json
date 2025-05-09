@@ -7,7 +7,7 @@
 	"main": "js/index",
 	"files": [
 		"scripts",
-		"libsodium",
+		"vendor",
 		"cpp",
 		"js",
 		"android",
@@ -20,8 +20,7 @@
 		"!**/__mocks__"
 	],
 	"scripts": {
-		"prepack": "./scripts/prepack.sh",
-		"postpack": "./scripts/postpack.sh"
+		"prepack": "./scripts/prepack.sh"
 	},
 	"keywords": [
 		"react-native",
